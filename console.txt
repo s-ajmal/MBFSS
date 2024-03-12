@@ -1,0 +1,946 @@
+(stable) iedA@qin-X299-UD4-Pro:~/Shahroz$ python src/train.py --config config_files/pascal_train.yaml
+alternate: True
+arch: PVT v2, ResNeXt and Resnet
+batch_size: 16
+ckpt_path: checkpoints/
+ckpt_used: checkpoints/epoch=8-step=3248.ckpt
+data_root: data/pascal/
+epochs: 100
+gpus: -1
+hsplit: True
+hsplit_prob: 1.0
+image_size: 400
+layers: 101
+model_name: Masksplit+FF
+num_classes_val: 5
+pretrained: True
+query_aug: True
+shot: 1
+strategy: unsupervised_all
+sup_aug: True
+test_name: default
+test_split: default
+train_list: lists/pascal/train_masksplit.txt
+train_name: pascal
+train_split: False
+use_all_classes: True
+use_split_coco: False
+val_list: lists/pascal/val.txt
+vcrop_ignore_support: True
+vcrop_range: [-40, 40]
+visualize: False
+vsplit: True
+vsplit_prob: 1.0
+workers: 4
+
+GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+Processing data for [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████| 5789/5789 [00:00<00:00, 10318.54it/s]
+INFO: pascal -> pascal
+INFO: 0 -> 0
+>> Start Filtering classes 
+>> Removed classes = [] 
+>> Kept classes = ['airplane', 'bicycle', 'bird', 'boat', 'bottle'] 
+Processing data for [1, 2, 3, 4, 5]
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 1449/1449 [00:00<00:00, 2155.18it/s]
+INFO: pascal -> pascal
+INFO: 1 -> 1
+>> Start Filtering classes 
+>> Removed classes = [] 
+>> Kept classes = ['bus', 'cat', 'car', 'chair', 'cow'] 
+Processing data for [6, 7, 8, 9, 10]
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 1449/1449 [00:00<00:00, 2111.34it/s]
+INFO: pascal -> pascal
+INFO: 2 -> 2
+>> Start Filtering classes 
+>> Removed classes = [] 
+>> Kept classes = ['diningtable', 'dog', 'horse', 'motorcycle', 'person'] 
+Processing data for [11, 12, 13, 14, 15]
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 1449/1449 [00:00<00:00, 2163.34it/s]
+INFO: pascal -> pascal
+INFO: 3 -> 3
+>> Start Filtering classes 
+>> Removed classes = [] 
+>> Kept classes = ['pottedplant', 'sheep', 'sofa', 'train', 'tv'] 
+Processing data for [16, 17, 18, 19, 20]
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 1449/1449 [00:00<00:00, 2172.95it/s]
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+   | Name            | Type             | Params
+------------------------------------------------------
+0  | Res_backbone    | ResNet           | 44.6 M
+1  | Res_layer0      | Sequential       | 28.8 K
+2  | Res_layer1      | Sequential       | 215 K 
+3  | Res_layer2      | Sequential       | 1.2 M 
+4  | Res_layer3      | Sequential       | 26.1 M
+5  | Res_layer4      | Sequential       | 15.0 M
+6  | ResN_backbone   | ResNet           | 88.8 M
+7  | ResN_layer0     | Sequential       | 9.5 K 
+8  | ResN_layer1     | Sequential       | 420 K 
+9  | ResN_layer2     | Sequential       | 2.4 M 
+10 | ResN_layer3     | Sequential       | 55.2 M
+11 | ResN_layer4     | Sequential       | 28.7 M
+12 | pvt_backbone    | FeatureListNet   | 81.4 M
+13 | Res_projection1 | Sequential       | 590 K 
+14 | Res_projection2 | Sequential       | 1.2 M 
+15 | Res_projection3 | Sequential       | 2.4 M 
+16 | pvt_projection1 | Sequential       | 147 K 
+17 | pvt_projection2 | Sequential       | 369 K 
+18 | pvt_projection3 | Sequential       | 590 K 
+19 | dense_conv      | Sequential       | 885 K 
+20 | decoder         | Sequential       | 439 K 
+21 | criterion       | CrossEntropyLoss | 0     
+------------------------------------------------------
+221 M     Trainable params
+0         Non-trainable params
+221 M     Total params
+885.456   Total estimated model params size (MB)
+
+Validation sanity check: 100%|████████████████████████████████████████████████████████████████████████████████| 8/8 [00:23<00:00,  2.62s/it]tensor([0.8968, 0.5281, 1.3726, 0.5444, 1.1581]) tensor([17., 14., 17.,  6., 10.])
+tensor([2.2250, 1.3852, 2.7725, 0.7182, 1.8457]) tensor([11., 10., 22.,  9., 12.])
+tensor([0.7648, 0.8153, 0.5122, 0.6332, 4.1671]) tensor([ 7.,  9.,  7.,  6., 35.])
+tensor([0.4244, 0.8985, 1.8871, 0.9088, 1.4086]) tensor([ 7., 11., 15., 15., 16.])
+Epoch 0: 100%|█| 677/677 [15:38<00:00,  1.39s/it, loss=0.304, v_num=32, val_miou_old/dataloader_idx_0=0.084, val_loss/dataloader_idx_0=0.68tensor([304.9488,  46.0225, 316.8275, 209.1448, 178.6351]) tensor([565., 404., 599., 423., 509.])██████████| 316/316 [09:29<00:00,  1.34s/it]
+tensor([251.2813, 215.9949, 335.2204,  77.2993, 231.6046]) tensor([347., 515., 649., 594., 395.])
+tensor([ 28.0166, 282.5175, 155.7342, 118.6749, 518.9836]) tensor([ 205.,  463.,  256.,  214., 1362.])
+tensor([ 54.0069, 199.4830, 116.8855, 310.2326, 145.4071]) tensor([493., 385., 564., 582., 476.])
+Epoch 0: 100%|█| 677/677 [15:38<00:00,  1.39s/it, loss=0.304, v_num=32, val_miou_old/dataloader_idx_0=0.394, val_loss/dataloader_idx_0=0.26Epoch 0, global step 360: val_miou_0 reached 0.40559 (best 0.40559), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=0-step=360.ckpt" as top 2
+Epoch 0, global step 360: val_miou_1 reached 0.47531 (best 0.47531), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_1/epoch=0-step=360.ckpt" as top 2
+Epoch 0, global step 360: val_miou_2 reached 0.45816 (best 0.45816), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=0-step=360.ckpt" as top 2
+Epoch 0, global step 360: val_miou_3 reached 0.33469 (best 0.33469), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=0-step=360.ckpt" as top 2
+Epoch 1: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.27, v_num=32, val_miou_old/dataloader_idx_0=0.394, val_loss/dataloader_idx_0=0.265tensor([393.7363,  99.9017, 390.1775, 237.3660, 189.1271]) tensor([536., 433., 603., 419., 509.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([256.4630, 249.1727, 378.8852,  88.6757, 261.1079]) tensor([352., 547., 625., 583., 393.])
+tensor([ 52.9921, 301.6965, 165.7313, 141.9887, 577.1917]) tensor([ 242.,  460.,  235.,  229., 1334.])
+tensor([ 84.7491, 240.7793, 142.1816, 393.1647, 155.5397]) tensor([463., 382., 559., 618., 478.])
+Epoch 1: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.27, v_num=32, val_miou_old/dataloader_idx_0=0.485, val_loss/dataloader_idx_0=0.244Epoch 1, global step 721: val_miou_0 reached 0.51009 (best 0.51009), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=1-step=721-v1.ckpt" as top 2
+Epoch 1, global step 721: val_miou_1 reached 0.52137 (best 0.52137), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_1/epoch=1-step=721-v1.ckpt" as top 2
+Epoch 1, global step 721: val_miou_2 reached 0.52656 (best 0.52656), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=1-step=721-v1.ckpt" as top 2
+Epoch 1, global step 721: val_miou_3 reached 0.40586 (best 0.40586), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=1-step=721-v1.ckpt" as top 2
+Epoch 2: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.259, v_num=32, val_miou_old/dataloader_idx_0=0.485, val_loss/dataloader_idx_0=0.24tensor([344.2407,  82.1973, 345.0452, 212.3138, 181.7128]) tensor([575., 424., 580., 401., 520.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([237.2623, 250.9719, 301.2845,  64.7262, 230.2196]) tensor([337., 556., 638., 585., 384.])
+tensor([ 27.5899, 293.8473, 157.1295, 115.2975, 441.4265]) tensor([ 218.,  493.,  249.,  199., 1341.])
+tensor([ 49.2127, 211.9338, 102.9323, 375.1047, 137.8525]) tensor([445., 404., 574., 604., 473.])
+Epoch 2: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.259, v_num=32, val_miou_old/dataloader_idx_0=0.427, val_loss/dataloader_idx_0=0.23Epoch 2, global step 1082: val_miou_0 reached 0.45327 (best 0.51009), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=2-step=1082.ckpt" as top 2
+Epoch 2, step 1082: val_miou_1 was not in top 2
+Epoch 2, step 1082: val_miou_2 was not in top 2
+Epoch 2, global step 1082: val_miou_3 reached 0.34540 (best 0.40586), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=2-step=1082.ckpt" as top 2
+Epoch 3: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.217, v_num=32, val_miou_old/dataloader_idx_0=0.427, val_loss/dataloader_idx_0=0.23tensor([419.7592,  78.4381, 420.6314, 227.7110, 160.4936]) tensor([554., 446., 659., 398., 443.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([264.2548, 263.4180, 392.7220,  78.4396, 246.7119]) tensor([352., 557., 645., 581., 365.])
+tensor([ 37.8538, 334.4960, 172.2502, 117.3341, 528.6718]) tensor([ 249.,  493.,  256.,  200., 1302.])
+tensor([ 68.1836, 270.5872, 130.6287, 374.3041, 143.1416]) tensor([437., 414., 565., 625., 459.])
+Epoch 3: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.217, v_num=32, val_miou_old/dataloader_idx_0=0.493, val_loss/dataloader_idx_0=0.22Epoch 3, global step 1443: val_miou_0 reached 0.50125 (best 0.51009), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=3-step=1443-v1.ckpt" as top 2
+Epoch 3, global step 1443: val_miou_1 reached 0.52869 (best 0.52869), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_1/epoch=3-step=1443-v1.ckpt" as top 2
+Epoch 3, global step 1443: val_miou_2 reached 0.49922 (best 0.52656), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=3-step=1443-v1.ckpt" as top 2
+Epoch 3, global step 1443: val_miou_3 reached 0.39031 (best 0.40586), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=3-step=1443-v1.ckpt" as top 2
+Epoch 4: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.203, v_num=32, val_miou_old/dataloader_idx_0=0.493, val_loss/dataloader_idx_0=0.22tensor([421.2005,  88.2813, 444.8496, 245.0439, 199.9813]) tensor([576., 402., 635., 423., 464.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([261.2976, 273.5907, 432.2191,  94.7505, 250.1356]) tensor([341., 535., 648., 605., 371.])
+tensor([ 39.4405, 333.2467, 181.4391, 134.4406, 594.5299]) tensor([ 251.,  472.,  258.,  208., 1311.])
+tensor([ 79.4025, 249.6259, 155.8582, 392.1045, 143.4017]) tensor([493., 401., 540., 644., 422.])
+Epoch 4: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.203, v_num=32, val_miou_old/dataloader_idx_0=0.524, val_loss/dataloader_idx_0=0.21Epoch 4, global step 1804: val_miou_0 reached 0.53234 (best 0.53234), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=4-step=1804.ckpt" as top 2
+Epoch 4, global step 1804: val_miou_1 reached 0.55510 (best 0.55510), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_1/epoch=4-step=1804.ckpt" as top 2
+Epoch 4, global step 1804: val_miou_2 reached 0.53325 (best 0.53325), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=4-step=1804.ckpt" as top 2
+Epoch 4, global step 1804: val_miou_3 reached 0.40417 (best 0.40586), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=4-step=1804.ckpt" as top 2
+Epoch 5: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.209, v_num=32, val_miou_old/dataloader_idx_0=0.524, val_loss/dataloader_idx_0=0.21tensor([420.3056,  93.8739, 429.0369, 243.5941, 184.6637]) tensor([546., 426., 612., 426., 490.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([250.8515, 261.5546, 432.5862,  94.4943, 279.1582]) tensor([340., 528., 641., 603., 388.])
+tensor([ 41.1070, 319.1596, 172.7785, 130.7242, 596.1878]) tensor([ 220.,  458.,  244.,  204., 1374.])
+tensor([ 88.6300, 274.3759, 152.3844, 349.4060, 167.4379]) tensor([476., 390., 554., 618., 462.])
+Epoch 5: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.209, v_num=32, val_miou_old/dataloader_idx_0=0.507, val_loss/dataloader_idx_0=0.21Epoch 5, global step 2165: val_miou_0 reached 0.52797 (best 0.53234), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=5-step=2165.ckpt" as top 2
+Epoch 5, global step 2165: val_miou_1 reached 0.57684 (best 0.57684), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_1/epoch=5-step=2165.ckpt" as top 2
+Epoch 5, global step 2165: val_miou_2 reached 0.53331 (best 0.53331), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=5-step=2165.ckpt" as top 2
+Epoch 5, global step 2165: val_miou_3 reached 0.41852 (best 0.41852), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=5-step=2165.ckpt" as top 2
+Epoch 6: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.222, v_num=32, val_miou_old/dataloader_idx_0=0.507, val_loss/dataloader_idx_0=0.21tensor([387.1383,  88.0483, 421.1973, 238.6634, 195.0514]) tensor([537., 422., 632., 416., 493.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([242.7674, 257.6537, 435.9835, 104.0746, 259.4390]) tensor([337., 523., 667., 599., 374.])
+tensor([ 46.7323, 355.2321, 186.5940, 117.4353, 611.9556]) tensor([ 220.,  492.,  264.,  187., 1337.])
+tensor([ 97.8167, 296.8004, 148.2418, 384.6621, 159.1059]) tensor([447., 440., 520., 628., 465.])
+Epoch 6: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.222, v_num=32, val_miou_old/dataloader_idx_0=0.490, val_loss/dataloader_idx_0=0.24Epoch 6, step 2526: val_miou_0 was not in top 2                                                                                              
+Epoch 6, step 2526: val_miou_1 was not in top 2
+Epoch 6, global step 2526: val_miou_2 reached 0.54539 (best 0.54539), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=6-step=2526.ckpt" as top 2
+Epoch 6, global step 2526: val_miou_3 reached 0.42663 (best 0.42663), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=6-step=2526.ckpt" as top 2
+Epoch 7: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.2, v_num=32, val_miou_old/dataloader_idx_0=0.490, val_loss/dataloader_idx_0=0.241,tensor([382.3258,  86.3202, 390.7611, 197.2954, 184.2934]) tensor([568., 445., 612., 412., 463.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([237.1785, 246.7611, 401.6527,  90.8144, 250.9862]) tensor([328., 550., 624., 607., 391.])
+tensor([ 45.2146, 298.9674, 170.9357, 142.2307, 565.0621]) tensor([ 225.,  441.,  269.,  226., 1339.])
+tensor([ 87.9670, 250.9442, 136.7282, 332.6324, 161.9256]) tensor([481., 413., 564., 568., 474.])
+Epoch 7: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.2, v_num=32, val_miou_old/dataloader_idx_0=0.463, val_loss/dataloader_idx_0=0.256,Epoch 7, step 2887: val_miou_0 was not in top 2                                                                                              
+Epoch 7, step 2887: val_miou_1 was not in top 2
+Epoch 7, step 2887: val_miou_2 was not in top 2
+Epoch 7, step 2887: val_miou_3 was not in top 2
+Epoch 8: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.216, v_num=32, val_miou_old/dataloader_idx_0=0.463, val_loss/dataloader_idx_0=0.25tensor([353.9005,  74.7418, 372.1839, 174.3184, 176.7398]) tensor([542., 425., 621., 395., 517.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([223.7885, 259.3725, 380.4783,  94.8243, 231.8732]) tensor([313., 561., 619., 631., 376.])
+tensor([ 40.2020, 309.6948, 161.1637, 128.8252, 535.3737]) tensor([ 229.,  483.,  251.,  219., 1318.])
+tensor([100.2751, 201.4546, 151.4538, 309.4188, 138.9577]) tensor([496., 387., 606., 561., 450.])
+Epoch 8: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.216, v_num=32, val_miou_old/dataloader_idx_0=0.419, val_loss/dataloader_idx_0=0.25Epoch 8, step 3248: val_miou_0 was not in top 2                                                                                              
+Epoch 8, step 3248: val_miou_1 was not in top 2
+Epoch 8, step 3248: val_miou_2 was not in top 2
+Epoch 8, step 3248: val_miou_3 was not in top 2
+Epoch 9: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.204, v_num=32, val_miou_old/dataloader_idx_0=0.419, val_loss/dataloader_idx_0=0.25tensor([383.6803,  94.9377, 380.2609, 204.0258, 200.0780]) tensor([541., 402., 617., 407., 533.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([276.0854, 237.7007, 408.6354,  99.7767, 224.3675]) tensor([388., 539., 655., 577., 341.])
+tensor([ 41.7058, 321.9944, 156.4527, 117.9098, 607.4112]) tensor([ 234.,  467.,  241.,  193., 1365.])
+tensor([ 96.9925, 236.5660, 168.6806, 323.1544, 147.1328]) tensor([449., 387., 573., 625., 466.])
+Epoch 9: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.204, v_num=32, val_miou_old/dataloader_idx_0=0.459, val_loss/dataloader_idx_0=0.26Epoch 9, step 3609: val_miou_0 was not in top 2                                                                                              
+Epoch 9, step 3609: val_miou_1 was not in top 2
+Epoch 9, step 3609: val_miou_2 was not in top 2
+Epoch 9, step 3609: val_miou_3 was not in top 2
+Epoch 10: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.188, v_num=32, val_miou_old/dataloader_idx_0=0.459, val_loss/dataloader_idx_0=0.2tensor([408.9594,  86.9448, 397.7285, 215.4845, 199.6172]) tensor([562., 421., 606., 416., 495.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([251.7577, 246.9137, 383.4417, 100.0487, 238.3460]) tensor([351., 536., 623., 618., 372.])
+tensor([ 38.0110, 314.0814, 170.5433, 136.8491, 580.4915]) tensor([ 242.,  459.,  254.,  223., 1322.])
+tensor([ 75.4198, 237.6444, 171.1512, 339.5616, 135.7164]) tensor([430., 415., 598., 604., 453.])
+Epoch 10: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.188, v_num=32, val_miou_old/dataloader_idx_0=0.483, val_loss/dataloader_idx_0=0.2Epoch 10, step 3970: val_miou_0 was not in top 2                                                                                             
+Epoch 10, step 3970: val_miou_1 was not in top 2
+Epoch 10, step 3970: val_miou_2 was not in top 2
+Epoch 10, step 3970: val_miou_3 was not in top 2
+Epoch 11: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.208, v_num=32, val_miou_old/dataloader_idx_0=0.483, val_loss/dataloader_idx_0=0.2tensor([443.6823,  90.7060, 432.2133, 236.1456, 180.2303]) tensor([577., 431., 630., 404., 458.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([230.2366, 254.0112, 407.6794,  90.4532, 251.6873]) tensor([317., 561., 646., 606., 370.])
+tensor([ 29.1486, 309.9778, 181.9818, 138.7032, 596.2363]) tensor([ 228.,  449.,  252.,  221., 1350.])
+tensor([ 77.8360, 249.5279, 115.8526, 330.0276, 147.1991]) tensor([496., 378., 538., 614., 474.])
+Epoch 11: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.208, v_num=32, val_miou_old/dataloader_idx_0=0.511, val_loss/dataloader_idx_0=0.2Epoch 11, global step 4331: val_miou_0 reached 0.52870 (best 0.53234), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=11-step=4331.ckpt" as top 2
+Epoch 11, step 4331: val_miou_1 was not in top 2
+Epoch 11, step 4331: val_miou_2 was not in top 2
+Epoch 11, step 4331: val_miou_3 was not in top 2
+Epoch 12: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.201, v_num=32, val_miou_old/dataloader_idx_0=0.511, val_loss/dataloader_idx_0=0.2tensor([379.2971,  95.4997, 406.9359, 235.1114, 199.4508]) tensor([512., 398., 629., 439., 522.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([235.3150, 259.5061, 411.7257,  77.9540, 233.2869]) tensor([339., 566., 645., 587., 363.])
+tensor([ 36.4747, 336.6307, 156.6492, 135.7311, 579.4135]) tensor([ 213.,  484.,  241.,  200., 1362.])
+tensor([ 98.5765, 240.7357, 133.5439, 351.1320, 142.7009]) tensor([471., 380., 539., 632., 478.])
+Epoch 12: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.201, v_num=32, val_miou_old/dataloader_idx_0=0.486, val_loss/dataloader_idx_0=0.2Epoch 12, step 4692: val_miou_0 was not in top 2                                                                                             
+Epoch 12, step 4692: val_miou_1 was not in top 2
+Epoch 12, step 4692: val_miou_2 was not in top 2
+Epoch 12, step 4692: val_miou_3 was not in top 2
+Epoch 13: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.184, v_num=32, val_miou_old/dataloader_idx_0=0.486, val_loss/dataloader_idx_0=0.2tensor([400.4877,  92.6756, 426.4128, 218.5929, 196.7545]) tensor([537., 447., 623., 380., 513.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([243.6395, 275.2414, 417.7412,  94.8855, 253.8340]) tensor([331., 548., 612., 639., 370.])
+tensor([ 43.1511, 305.8633, 178.4796, 158.8008, 613.9064]) tensor([ 222.,  438.,  258.,  245., 1337.])
+tensor([ 93.6382, 263.2217, 161.6551, 385.5531, 149.2957]) tensor([488., 389., 529., 617., 477.])
+Epoch 13: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.184, v_num=32, val_miou_old/dataloader_idx_0=0.485, val_loss/dataloader_idx_0=0.2Epoch 13, step 5053: val_miou_0 was not in top 2                                                                                             
+Epoch 13, step 5053: val_miou_1 was not in top 2
+Epoch 13, global step 5053: val_miou_2 reached 0.53836 (best 0.54539), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=13-step=5053-v1.ckpt" as top 2
+Epoch 13, global step 5053: val_miou_3 reached 0.42240 (best 0.42663), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=13-step=5053.ckpt" as top 2
+Epoch 14: 100%|▉| 676/677 [15:38<00:01,  1.39s/it, loss=0.21, v_num=32, val_miou_old/dataloader_idx_0=0.485, val_loss/dataloader_idx_0=0.25tensor([411.5747, 100.6115, 432.9007, 232.0132, 189.2027]) tensor([564., 424., 628., 416., 468.])██████████| 316/316 [09:31<00:00,  1.34s/it]
+tensor([253.4334, 243.6003, 403.6234,  87.6797, 241.6755]) tensor([349., 519., 657., 611., 364.])
+tensor([ 42.3836, 338.7898, 154.7189, 144.8412, 624.9998]) tensor([ 195.,  482.,  232.,  215., 1376.])
+tensor([ 94.5203, 275.5653, 168.1408, 365.2126, 137.0693]) tensor([450., 394., 581., 602., 473.])
+Epoch 14: 100%|█| 677/677 [15:40<00:00,  1.39s/it, loss=0.21, v_num=32, val_miou_old/dataloader_idx_0=0.498, val_loss/dataloader_idx_0=0.24Epoch 14, step 5414: val_miou_0 was not in top 2                                                                                             
+Epoch 14, step 5414: val_miou_1 was not in top 2
+Epoch 14, global step 5414: val_miou_2 reached 0.54300 (best 0.54539), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=14-step=5414.ckpt" as top 2
+Epoch 14, step 5414: val_miou_3 was not in top 2
+Epoch 15: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.198, v_num=32, val_miou_old/dataloader_idx_0=0.498, val_loss/dataloader_idx_0=0.2tensor([325.6949,  49.3955, 373.1866, 183.8564, 180.0690]) tensor([542., 400., 636., 432., 490.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([198.3485, 239.9614, 333.6266,  65.3210, 213.5151]) tensor([300., 547., 666., 615., 372.])
+tensor([ 27.6181, 276.6927, 134.0086, 105.1593, 523.1071]) tensor([ 224.,  481.,  244.,  211., 1340.])
+tensor([ 60.0034, 200.3056, 107.2226, 280.2484, 135.2982]) tensor([459., 377., 575., 614., 475.])
+Epoch 15: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.198, v_num=32, val_miou_old/dataloader_idx_0=0.424, val_loss/dataloader_idx_0=0.2Epoch 15, step 5775: val_miou_0 was not in top 2                                                                                             
+Epoch 15, step 5775: val_miou_1 was not in top 2
+Epoch 15, step 5775: val_miou_2 was not in top 2
+Epoch 15, step 5775: val_miou_3 was not in top 2
+Epoch 16: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.201, v_num=32, val_miou_old/dataloader_idx_0=0.424, val_loss/dataloader_idx_0=0.2tensor([285.6545,  63.6356, 335.7769, 156.0951, 169.7921]) tensor([544., 437., 595., 423., 501.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([213.6827, 225.8281, 312.4319,  63.4344, 231.0408]) tensor([350., 554., 596., 599., 401.])
+tensor([ 36.8903, 296.7200, 128.3700, 114.5076, 487.7566]) tensor([ 238.,  491.,  215.,  218., 1338.])
+tensor([ 66.5653, 239.6765, 106.2994, 270.3211, 126.5249]) tensor([456., 414., 571., 617., 442.])
+Epoch 16: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.201, v_num=32, val_miou_old/dataloader_idx_0=0.384, val_loss/dataloader_idx_0=0.2Epoch 16, step 6136: val_miou_0 was not in top 2                                                                                             
+Epoch 16, step 6136: val_miou_1 was not in top 2
+Epoch 16, step 6136: val_miou_2 was not in top 2
+Epoch 16, step 6136: val_miou_3 was not in top 2
+Epoch 17: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.2, v_num=32, val_miou_old/dataloader_idx_0=0.384, val_loss/dataloader_idx_0=0.263tensor([432.1609,  90.1191, 428.8625, 233.7736, 176.4759]) tensor([584., 400., 644., 414., 458.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([260.1702, 268.6401, 403.9758,  73.5625, 229.7918]) tensor([352., 583., 665., 541., 359.])
+tensor([ 44.4170, 292.6206, 163.3195, 138.0211, 591.4751]) tensor([ 224.,  449.,  258.,  208., 1361.])
+tensor([108.1086, 238.9965, 135.9875, 341.4888, 178.5753]) tensor([452., 395., 536., 605., 512.])
+Epoch 17: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.2, v_num=32, val_miou_old/dataloader_idx_0=0.493, val_loss/dataloader_idx_0=0.239Epoch 17, step 6497: val_miou_0 was not in top 2                                                                                             
+Epoch 17, step 6497: val_miou_1 was not in top 2
+Epoch 17, step 6497: val_miou_2 was not in top 2
+Epoch 17, step 6497: val_miou_3 was not in top 2
+Epoch 18: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.218, v_num=32, val_miou_old/dataloader_idx_0=0.493, val_loss/dataloader_idx_0=0.2tensor([388.3423,  71.5316, 376.7275, 189.4519, 167.2464]) tensor([607., 405., 608., 403., 477.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([237.1123, 270.9339, 354.5941,  65.1691, 228.2956]) tensor([359., 581., 648., 554., 358.])
+tensor([ 36.4148, 316.0307, 147.3525, 112.6327, 523.3687]) tensor([ 251.,  490.,  244.,  209., 1306.])
+tensor([ 80.3780, 260.1228, 113.0302, 275.8185, 116.1845]) tensor([488., 441., 557., 580., 434.])
+Epoch 18: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.218, v_num=32, val_miou_old/dataloader_idx_0=0.442, val_loss/dataloader_idx_0=0.2Epoch 18, step 6858: val_miou_0 was not in top 2                                                                                             
+Epoch 18, step 6858: val_miou_1 was not in top 2
+Epoch 18, step 6858: val_miou_2 was not in top 2
+Epoch 18, step 6858: val_miou_3 was not in top 2
+Epoch 19: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.199, v_num=32, val_miou_old/dataloader_idx_0=0.442, val_loss/dataloader_idx_0=0.2tensor([441.2465,  88.5029, 423.7812, 248.7732, 181.5371]) tensor([561., 425., 624., 430., 460.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([224.2742, 239.5936, 422.4443,  87.6987, 248.9670]) tensor([318., 540., 666., 621., 355.])
+tensor([ 45.4454, 315.7733, 162.3199, 135.8006, 644.4553]) tensor([ 226.,  441.,  237.,  211., 1385.])
+tensor([ 87.1425, 244.6208, 137.7864, 382.2600, 136.7182]) tensor([466., 376., 563., 648., 447.])
+Epoch 19: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.199, v_num=32, val_miou_old/dataloader_idx_0=0.508, val_loss/dataloader_idx_0=0.2Epoch 19, global step 7219: val_miou_0 reached 0.52942 (best 0.53234), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=19-step=7219.ckpt" as top 2
+Epoch 19, step 7219: val_miou_1 was not in top 2
+Epoch 19, step 7219: val_miou_2 was not in top 2
+Epoch 19, step 7219: val_miou_3 was not in top 2
+Epoch 20: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.2, v_num=32, val_miou_old/dataloader_idx_0=0.508, val_loss/dataloader_idx_0=0.242tensor([393.4993,  83.0255, 423.9835, 247.8471, 180.4887]) tensor([534., 380., 644., 451., 491.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([265.7294, 263.4729, 387.4615,  88.3250, 240.0569]) tensor([362., 559., 634., 588., 357.])
+tensor([ 37.2749, 316.3069, 168.3416, 121.3338, 602.1339]) tensor([ 212.,  461.,  259.,  197., 1371.])
+tensor([ 86.8478, 245.1467, 155.9992, 390.3801, 158.7110]) tensor([449., 385., 560., 631., 475.])
+Epoch 20: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.2, v_num=32, val_miou_old/dataloader_idx_0=0.491, val_loss/dataloader_idx_0=0.252Epoch 20, step 7580: val_miou_0 was not in top 2                                                                                             
+Epoch 20, step 7580: val_miou_1 was not in top 2
+Epoch 20, step 7580: val_miou_2 was not in top 2
+Epoch 20, step 7580: val_miou_3 was not in top 2
+Epoch 21: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.2, v_num=32, val_miou_old/dataloader_idx_0=0.491, val_loss/dataloader_idx_0=0.252tensor([402.5938,  93.7682, 419.9324, 221.8457, 220.2554]) tensor([573., 425., 608., 383., 511.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([237.4918, 258.7474, 411.7377,  81.8442, 248.3811]) tensor([330., 534., 666., 603., 367.])
+tensor([ 35.2611, 303.4726, 186.8311, 142.1610, 620.4896]) tensor([ 219.,  438.,  267.,  216., 1360.])
+tensor([ 83.7066, 235.7420, 140.8290, 376.7578, 153.1024]) tensor([489., 338., 567., 606., 500.])
+Epoch 21: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.2, v_num=32, val_miou_old/dataloader_idx_0=0.500, val_loss/dataloader_idx_0=0.253Epoch 21, step 7941: val_miou_0 was not in top 2                                                                                             
+Epoch 21, step 7941: val_miou_1 was not in top 2
+Epoch 21, step 7941: val_miou_2 was not in top 2
+Epoch 21, step 7941: val_miou_3 was not in top 2
+Epoch 22: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.177, v_num=32, val_miou_old/dataloader_idx_0=0.500, val_loss/dataloader_idx_0=0.2tensor([398.4786,  79.9884, 385.7488, 196.7791, 190.2556]) tensor([581., 405., 596., 417., 501.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([244.4202, 263.2336, 377.7476,  78.9357, 233.0411]) tensor([343., 566., 622., 603., 366.])
+tensor([ 41.7420, 301.2201, 155.0935, 119.3463, 542.6787]) tensor([ 230.,  463.,  237.,  206., 1364.])
+tensor([ 89.9032, 244.6358, 142.4707, 322.4290, 129.5485]) tensor([470., 397., 559., 634., 440.])
+Epoch 22: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.177, v_num=32, val_miou_old/dataloader_idx_0=0.466, val_loss/dataloader_idx_0=0.2Epoch 22, step 8302: val_miou_0 was not in top 2                                                                                             
+Epoch 22, step 8302: val_miou_1 was not in top 2
+Epoch 22, step 8302: val_miou_2 was not in top 2
+Epoch 22, step 8302: val_miou_3 was not in top 2
+Epoch 23: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.194, v_num=32, val_miou_old/dataloader_idx_0=0.466, val_loss/dataloader_idx_0=0.2tensor([348.8699,  69.4875, 377.2570, 193.4569, 189.1626]) tensor([551., 410., 654., 399., 486.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([202.7433, 249.8964, 359.2278,  88.9478, 227.0092]) tensor([309., 552., 664., 615., 360.])
+tensor([ 34.0393, 305.4459, 164.6700, 122.6120, 554.7540]) tensor([ 212.,  448.,  252.,  220., 1368.])
+tensor([ 86.6905, 214.3133, 167.4109, 316.0112, 152.4750]) tensor([465., 364., 592., 599., 480.])
+Epoch 23: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.194, v_num=32, val_miou_old/dataloader_idx_0=0.456, val_loss/dataloader_idx_0=0.2Epoch 23, step 8663: val_miou_0 was not in top 2                                                                                             
+Epoch 23, step 8663: val_miou_1 was not in top 2
+Epoch 23, step 8663: val_miou_2 was not in top 2
+Epoch 23, step 8663: val_miou_3 was not in top 2
+Epoch 24: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.179, v_num=32, val_miou_old/dataloader_idx_0=0.456, val_loss/dataloader_idx_0=0.2tensor([387.7754,  92.7694, 439.7604, 216.4846, 222.2309]) tensor([550., 424., 635., 378., 513.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([267.7337, 242.3822, 392.1496,  93.1691, 279.7927]) tensor([346., 521., 623., 621., 389.])
+tensor([ 41.6129, 312.7138, 179.1152, 148.2336, 610.9519]) tensor([ 219.,  443.,  246.,  234., 1358.])
+tensor([ 92.1269, 288.0900, 164.8369, 411.2018, 140.1508]) tensor([457., 417., 559., 635., 432.])
+Epoch 24: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.179, v_num=32, val_miou_old/dataloader_idx_0=0.498, val_loss/dataloader_idx_0=0.2Epoch 24, step 9024: val_miou_0 was not in top 2                                                                                             
+Epoch 24, step 9024: val_miou_1 was not in top 2
+Epoch 24, step 9024: val_miou_2 was not in top 2
+Epoch 24, global step 9024: val_miou_3 reached 0.43186 (best 0.43186), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=24-step=9024.ckpt" as top 2
+Epoch 25: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.188, v_num=32, val_miou_old/dataloader_idx_0=0.498, val_loss/dataloader_idx_0=0.2tensor([392.0325,  88.1808, 406.3841, 246.7099, 198.8800]) tensor([557., 403., 599., 434., 507.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([225.9267, 243.0527, 431.5823,  80.0529, 261.6979]) tensor([324., 538., 658., 595., 385.])
+tensor([ 43.6982, 338.5510, 170.7215, 131.6419, 610.6565]) tensor([ 214.,  483.,  244.,  216., 1343.])
+tensor([109.0542, 273.7727, 151.8447, 377.0900, 143.6031]) tensor([490., 397., 562., 603., 448.])
+Epoch 25: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.188, v_num=32, val_miou_old/dataloader_idx_0=0.496, val_loss/dataloader_idx_0=0.2Epoch 25, step 9385: val_miou_0 was not in top 2                                                                                             
+Epoch 25, step 9385: val_miou_1 was not in top 2
+Epoch 25, step 9385: val_miou_2 was not in top 2
+Epoch 25, step 9385: val_miou_3 was not in top 2
+Epoch 26: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.17, v_num=32, val_miou_old/dataloader_idx_0=0.496, val_loss/dataloader_idx_0=0.26tensor([466.0689, 103.7590, 431.2225, 227.1573, 177.3593]) tensor([595., 438., 607., 402., 458.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([250.4918, 237.9786, 401.3899,  81.8526, 260.4553]) tensor([351., 521., 629., 602., 397.])
+tensor([ 47.2991, 340.1841, 157.1722, 133.1486, 639.2969]) tensor([ 222.,  475.,  234.,  208., 1361.])
+tensor([ 90.2196, 296.2643, 183.2529, 357.5318, 125.9264]) tensor([484., 412., 546., 603., 455.])
+Epoch 26: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.17, v_num=32, val_miou_old/dataloader_idx_0=0.507, val_loss/dataloader_idx_0=0.25Epoch 26, global step 9746: val_miou_0 reached 0.53659 (best 0.53659), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=26-step=9746.ckpt" as top 2
+Epoch 26, step 9746: val_miou_1 was not in top 2
+Epoch 26, step 9746: val_miou_2 was not in top 2
+Epoch 26, step 9746: val_miou_3 was not in top 2
+Epoch 27: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.182, v_num=32, val_miou_old/dataloader_idx_0=0.507, val_loss/dataloader_idx_0=0.2tensor([387.4431, 106.2001, 424.0937, 222.4148, 211.4086]) tensor([557., 426., 605., 406., 506.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([266.5321, 251.5543, 410.8402,  99.9024, 275.6577]) tensor([361., 520., 613., 608., 398.])
+tensor([ 49.5041, 344.5150, 176.6386, 136.8746, 632.6148]) tensor([ 229.,  474.,  245.,  207., 1345.])
+tensor([ 98.6242, 288.1398, 200.5119, 349.7952, 133.9555]) tensor([480., 409., 598., 585., 428.])
+Epoch 27: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.182, v_num=32, val_miou_old/dataloader_idx_0=0.495, val_loss/dataloader_idx_0=0.2Epoch 27, step 10107: val_miou_0 was not in top 2                                                                                            
+Epoch 27, step 10107: val_miou_1 was not in top 2
+Epoch 27, global step 10107: val_miou_2 reached 0.55911 (best 0.55911), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=27-step=10107.ckpt" as top 2
+Epoch 27, global step 10107: val_miou_3 reached 0.43124 (best 0.43186), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=27-step=10107.ckpt" as top 2
+Epoch 28: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.184, v_num=32, val_miou_old/dataloader_idx_0=0.495, val_loss/dataloader_idx_0=0.2tensor([374.7678,  83.4116, 412.5199, 217.5514, 184.7566]) tensor([540., 416., 612., 432., 500.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([243.8190, 241.5004, 376.0558,  84.9128, 258.1059]) tensor([327., 545., 621., 585., 422.])
+tensor([ 39.0662, 313.0872, 187.4266, 116.1239, 572.4954]) tensor([ 211.,  472.,  285.,  193., 1339.])
+tensor([ 63.6639, 257.6527, 136.8685, 347.6561, 151.7175]) tensor([455., 384., 558., 616., 487.])
+Epoch 28: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.184, v_num=32, val_miou_old/dataloader_idx_0=0.461, val_loss/dataloader_idx_0=0.2Epoch 28, step 10468: val_miou_0 was not in top 2                                                                                            
+Epoch 28, step 10468: val_miou_1 was not in top 2
+Epoch 28, step 10468: val_miou_2 was not in top 2
+Epoch 28, step 10468: val_miou_3 was not in top 2
+Epoch 29: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.184, v_num=32, val_miou_old/dataloader_idx_0=0.461, val_loss/dataloader_idx_0=0.2tensor([350.8852,  76.9396, 361.9060, 179.3083, 174.9472]) tensor([538., 420., 628., 392., 522.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([222.1017, 237.3757, 383.4400,  81.3971, 242.6298]) tensor([329., 564., 622., 598., 387.])
+tensor([ 35.2591, 290.4719, 157.0078, 126.0269, 578.5919]) tensor([ 219.,  447.,  248.,  214., 1372.])
+tensor([ 86.8791, 252.8480, 150.0142, 335.6118, 140.1219]) tensor([468., 418., 572., 585., 457.])
+Epoch 29: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.184, v_num=32, val_miou_old/dataloader_idx_0=0.432, val_loss/dataloader_idx_0=0.2Epoch 29, step 10829: val_miou_0 was not in top 2                                                                                            
+Epoch 29, step 10829: val_miou_1 was not in top 2
+Epoch 29, step 10829: val_miou_2 was not in top 2
+Epoch 29, step 10829: val_miou_3 was not in top 2
+Epoch 30: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.185, v_num=32, val_miou_old/dataloader_idx_0=0.432, val_loss/dataloader_idx_0=0.2tensor([385.5255,  73.5784, 425.9869, 221.9657, 183.1782]) tensor([538., 404., 625., 446., 487.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([241.0521, 243.9880, 408.5361,  62.3837, 249.3155]) tensor([341., 552., 625., 604., 378.])
+tensor([ 23.6121, 322.1648, 175.9901, 122.0180, 575.4115]) tensor([ 208.,  462.,  264.,  210., 1356.])
+tensor([ 81.1986, 265.2939, 144.1533, 312.5906, 135.9024]) tensor([471., 383., 592., 558., 496.])
+Epoch 30: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.185, v_num=32, val_miou_old/dataloader_idx_0=0.487, val_loss/dataloader_idx_0=0.2Epoch 30, step 11190: val_miou_0 was not in top 2                                                                                            
+Epoch 30, step 11190: val_miou_1 was not in top 2
+Epoch 30, step 11190: val_miou_2 was not in top 2
+Epoch 30, step 11190: val_miou_3 was not in top 2
+Epoch 31: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.178, v_num=32, val_miou_old/dataloader_idx_0=0.487, val_loss/dataloader_idx_0=0.2tensor([373.0038,  97.3899, 409.1971, 211.4366, 192.7881]) tensor([527., 459., 618., 397., 499.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([256.5540, 225.6967, 381.4109,  86.8792, 255.4597]) tensor([356., 516., 611., 631., 386.])
+tensor([ 32.1861, 318.8484, 174.7003, 126.1559, 608.3542]) tensor([ 200.,  473.,  262.,  211., 1354.])
+tensor([ 88.4071, 275.9353, 149.8045, 368.5379, 158.9063]) tensor([445., 396., 579., 613., 467.])
+Epoch 31: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.178, v_num=32, val_miou_old/dataloader_idx_0=0.482, val_loss/dataloader_idx_0=0.2Epoch 31, step 11551: val_miou_0 was not in top 2                                                                                            
+Epoch 31, step 11551: val_miou_1 was not in top 2
+Epoch 31, step 11551: val_miou_2 was not in top 2
+Epoch 31, step 11551: val_miou_3 was not in top 2
+Epoch 32: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.176, v_num=32, val_miou_old/dataloader_idx_0=0.482, val_loss/dataloader_idx_0=0.2tensor([396.1795,  87.1771, 411.8877, 237.1408, 177.4779]) tensor([540., 426., 633., 417., 484.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([254.0343, 251.5345, 395.8079,  85.8795, 237.7964]) tensor([337., 568., 632., 596., 367.])
+tensor([ 45.3232, 295.6541, 161.1173, 115.2579, 621.3127]) tensor([ 228.,  451.,  243.,  194., 1384.])
+tensor([ 91.0580, 266.3392, 148.3855, 357.2257, 139.5907]) tensor([464., 395., 572., 622., 447.])
+Epoch 32: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.176, v_num=32, val_miou_old/dataloader_idx_0=0.489, val_loss/dataloader_idx_0=0.2Epoch 32, step 11912: val_miou_0 was not in top 2                                                                                            
+Epoch 32, step 11912: val_miou_1 was not in top 2
+Epoch 32, step 11912: val_miou_2 was not in top 2
+Epoch 32, step 11912: val_miou_3 was not in top 2
+Epoch 33: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.185, v_num=32, val_miou_old/dataloader_idx_0=0.489, val_loss/dataloader_idx_0=0.2tensor([393.2178,  93.5945, 405.9087, 240.1614, 187.3995]) tensor([531., 424., 616., 443., 486.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([257.2375, 256.1394, 383.4533,  76.4184, 249.0628]) tensor([358., 555., 632., 568., 387.])
+tensor([ 40.2678, 312.4949, 165.2869, 138.8276, 615.7798]) tensor([ 243.,  455.,  249.,  214., 1339.])
+tensor([ 98.1109, 236.0637, 138.8740, 354.5146, 157.4634]) tensor([534., 365., 511., 617., 473.])
+Epoch 33: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.185, v_num=32, val_miou_old/dataloader_idx_0=0.494, val_loss/dataloader_idx_0=0.2Epoch 33, step 12273: val_miou_0 was not in top 2                                                                                            
+Epoch 33, step 12273: val_miou_1 was not in top 2
+Epoch 33, step 12273: val_miou_2 was not in top 2
+Epoch 33, step 12273: val_miou_3 was not in top 2
+Epoch 34: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.173, v_num=32, val_miou_old/dataloader_idx_0=0.494, val_loss/dataloader_idx_0=0.2tensor([418.6945,  84.2740, 437.7937, 216.1425, 207.5721]) tensor([570., 405., 615., 386., 524.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([216.6489, 248.5410, 414.2939,  88.3831, 240.6978]) tensor([312., 585., 646., 590., 367.])
+tensor([ 38.2614, 320.9088, 170.9975, 139.7064, 602.2275]) tensor([ 215.,  461.,  250.,  223., 1351.])
+tensor([ 88.6393, 270.2719, 177.6488, 332.3849, 148.9606]) tensor([464., 398., 574., 631., 433.])
+Epoch 34: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.173, v_num=32, val_miou_old/dataloader_idx_0=0.507, val_loss/dataloader_idx_0=0.2Epoch 34, step 12634: val_miou_0 was not in top 2                                                                                            
+Epoch 34, step 12634: val_miou_1 was not in top 2
+Epoch 34, step 12634: val_miou_2 was not in top 2
+Epoch 34, step 12634: val_miou_3 was not in top 2
+Epoch 35: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.17, v_num=32, val_miou_old/dataloader_idx_0=0.507, val_loss/dataloader_idx_0=0.24tensor([392.7033,  88.0373, 394.1306, 220.8751, 214.7819]) tensor([550., 430., 602., 394., 524.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([256.3338, 264.0854, 373.4591,  86.6919, 248.5326]) tensor([347., 569., 601., 589., 394.])
+tensor([ 41.2526, 307.9600, 179.8358, 133.1233, 605.1259]) tensor([ 216.,  447.,  260.,  205., 1372.])
+tensor([ 74.7759, 255.8202, 166.2348, 406.6348, 158.9481]) tensor([436., 394., 574., 632., 464.])
+Epoch 35: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.17, v_num=32, val_miou_old/dataloader_idx_0=0.494, val_loss/dataloader_idx_0=0.26Epoch 35, step 12995: val_miou_0 was not in top 2                                                                                            
+Epoch 35, step 12995: val_miou_1 was not in top 2
+Epoch 35, step 12995: val_miou_2 was not in top 2
+Epoch 35, step 12995: val_miou_3 was not in top 2
+Epoch 36: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.185, v_num=32, val_miou_old/dataloader_idx_0=0.494, val_loss/dataloader_idx_0=0.2tensor([416.4194,  88.5367, 407.6862, 231.8395, 204.8752]) tensor([577., 412., 613., 412., 486.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([252.1670, 231.0816, 433.5865,  82.3796, 252.1027]) tensor([348., 510., 691., 570., 381.])
+tensor([ 51.8557, 309.6893, 174.3928, 151.3861, 577.5424]) tensor([ 230.,  455.,  257.,  241., 1317.])
+tensor([101.9238, 252.8008, 151.8856, 333.6381, 139.6679]) tensor([473., 385., 543., 607., 492.])
+Epoch 36: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.185, v_num=32, val_miou_old/dataloader_idx_0=0.498, val_loss/dataloader_idx_0=0.2Epoch 36, step 13356: val_miou_0 was not in top 2                                                                                            
+Epoch 36, step 13356: val_miou_1 was not in top 2
+Epoch 36, step 13356: val_miou_2 was not in top 2
+Epoch 36, step 13356: val_miou_3 was not in top 2
+Epoch 37: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.19, v_num=32, val_miou_old/dataloader_idx_0=0.498, val_loss/dataloader_idx_0=0.25tensor([382.0427,  81.4566, 410.0928, 212.9015, 189.4885]) tensor([566., 379., 655., 401., 499.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([259.3691, 250.1001, 373.6256,  83.8177, 245.2343]) tensor([357., 537., 644., 579., 383.])
+tensor([ 42.4316, 274.4069, 145.7248, 142.2737, 556.9627]) tensor([ 236.,  422.,  222.,  228., 1392.])
+tensor([ 81.7948, 269.3535, 140.4250, 333.6741, 137.5092]) tensor([457., 428., 527., 607., 481.])
+Epoch 37: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.19, v_num=32, val_miou_old/dataloader_idx_0=0.479, val_loss/dataloader_idx_0=0.25Epoch 37, step 13717: val_miou_0 was not in top 2                                                                                            
+Epoch 37, step 13717: val_miou_1 was not in top 2
+Epoch 37, step 13717: val_miou_2 was not in top 2
+Epoch 37, step 13717: val_miou_3 was not in top 2
+Epoch 38: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.172, v_num=32, val_miou_old/dataloader_idx_0=0.479, val_loss/dataloader_idx_0=0.2tensor([393.5577,  91.1207, 440.4068, 234.0950, 203.8500]) tensor([526., 404., 660., 406., 504.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([264.0417, 235.6765, 416.8641,  77.6438, 243.8912]) tensor([366., 523., 659., 592., 360.])
+tensor([ 39.2059, 295.9571, 180.1455, 145.7018, 607.4836]) tensor([ 201.,  433.,  250.,  236., 1380.])
+tensor([ 79.3713, 263.6876, 149.9215, 379.9196, 158.3307]) tensor([480., 399., 560., 579., 482.])
+Epoch 38: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.172, v_num=32, val_miou_old/dataloader_idx_0=0.517, val_loss/dataloader_idx_0=0.2Epoch 38, step 14078: val_miou_0 was not in top 2                                                                                            
+Epoch 38, step 14078: val_miou_1 was not in top 2
+Epoch 38, step 14078: val_miou_2 was not in top 2
+Epoch 38, step 14078: val_miou_3 was not in top 2
+Epoch 39: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.169, v_num=32, val_miou_old/dataloader_idx_0=0.517, val_loss/dataloader_idx_0=0.2tensor([404.6135,  91.8124, 427.5499, 241.9957, 196.1243]) tensor([530., 423., 636., 418., 493.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([239.3183, 240.9572, 428.5556,  76.1020, 235.1529]) tensor([329., 539., 655., 614., 363.])
+tensor([ 40.6260, 322.9037, 186.8666, 122.0835, 569.0092]) tensor([ 225.,  459.,  261.,  214., 1341.])
+tensor([ 72.4330, 265.3847, 163.0910, 398.9698, 138.8371]) tensor([490., 387., 575., 619., 429.])
+Epoch 39: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.169, v_num=32, val_miou_old/dataloader_idx_0=0.507, val_loss/dataloader_idx_0=0.2Epoch 39, step 14439: val_miou_0 was not in top 2                                                                                            
+Epoch 39, step 14439: val_miou_1 was not in top 2
+Epoch 39, step 14439: val_miou_2 was not in top 2
+Epoch 39, step 14439: val_miou_3 was not in top 2
+Epoch 40: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.161, v_num=32, val_miou_old/dataloader_idx_0=0.507, val_loss/dataloader_idx_0=0.2tensor([403.3843,  94.3343, 392.2091, 199.2871, 191.9830]) tensor([571., 422., 616., 405., 486.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([251.1219, 247.4061, 407.2406,  83.1088, 243.2605]) tensor([363., 524., 651., 592., 370.])
+tensor([ 35.2555, 326.2777, 156.4771, 125.8586, 563.0471]) tensor([ 224.,  480.,  237.,  206., 1353.])
+tensor([ 73.8948, 248.6651, 166.8814, 336.4505, 156.4945]) tensor([465., 388., 570., 593., 484.])
+Epoch 40: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.161, v_num=32, val_miou_old/dataloader_idx_0=0.491, val_loss/dataloader_idx_0=0.2Epoch 40, step 14800: val_miou_0 was not in top 2                                                                                            
+Epoch 40, step 14800: val_miou_1 was not in top 2
+Epoch 40, step 14800: val_miou_2 was not in top 2
+Epoch 40, step 14800: val_miou_3 was not in top 2
+Epoch 41: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.168, v_num=32, val_miou_old/dataloader_idx_0=0.491, val_loss/dataloader_idx_0=0.2tensor([386.1669,  85.7118, 391.5075, 187.2043, 165.8239]) tensor([601., 426., 630., 397., 446.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([228.0798, 241.0671, 395.2206,  69.1920, 247.6400]) tensor([326., 548., 632., 607., 387.])
+tensor([ 41.6688, 301.4243, 167.6840, 116.0311, 522.7014]) tensor([ 236.,  475.,  257.,  220., 1312.])
+tensor([ 75.3364, 198.7016, 157.4166, 326.1758, 173.5720]) tensor([433., 358., 599., 614., 496.])
+Epoch 41: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.168, v_num=32, val_miou_old/dataloader_idx_0=0.476, val_loss/dataloader_idx_0=0.2Epoch 41, step 15161: val_miou_0 was not in top 2                                                                                            
+Epoch 41, step 15161: val_miou_1 was not in top 2
+Epoch 41, step 15161: val_miou_2 was not in top 2
+Epoch 41, step 15161: val_miou_3 was not in top 2
+Epoch 42: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.151, v_num=32, val_miou_old/dataloader_idx_0=0.476, val_loss/dataloader_idx_0=0.2tensor([408.0482,  76.9137, 395.4839, 223.9922, 191.9732]) tensor([574., 440., 607., 403., 476.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([257.1059, 223.0680, 393.9005,  78.3291, 270.1274]) tensor([362., 527., 608., 603., 400.])
+tensor([ 36.5028, 318.2319, 173.1328, 137.7640, 571.0952]) tensor([ 241.,  460.,  253.,  221., 1325.])
+tensor([ 80.0220, 255.6034, 147.2862, 401.5859, 162.0710]) tensor([479., 391., 549., 632., 449.])
+Epoch 42: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.151, v_num=32, val_miou_old/dataloader_idx_0=0.502, val_loss/dataloader_idx_0=0.2Epoch 42, step 15522: val_miou_0 was not in top 2                                                                                            
+Epoch 42, step 15522: val_miou_1 was not in top 2
+Epoch 42, step 15522: val_miou_2 was not in top 2
+Epoch 42, step 15522: val_miou_3 was not in top 2
+Epoch 43: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.171, v_num=32, val_miou_old/dataloader_idx_0=0.502, val_loss/dataloader_idx_0=0.2tensor([408.8786, 100.9104, 430.5905, 248.3117, 200.5154]) tensor([553., 412., 635., 408., 492.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([275.1418, 234.7910, 414.8037,  95.2303, 258.8825]) tensor([379., 507., 633., 603., 378.])
+tensor([ 41.4976, 344.9149, 173.4033, 130.3933, 589.1883]) tensor([ 227.,  489.,  244.,  208., 1332.])
+tensor([ 94.7898, 258.7964, 163.9242, 385.4560, 135.2809]) tensor([503., 388., 555., 601., 453.])
+Epoch 43: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.171, v_num=32, val_miou_old/dataloader_idx_0=0.509, val_loss/dataloader_idx_0=0.2Epoch 43, global step 15883: val_miou_0 reached 0.53571 (best 0.53659), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=43-step=15883.ckpt" as top 2
+Epoch 43, step 15883: val_miou_1 was not in top 2
+Epoch 43, step 15883: val_miou_2 was not in top 2
+Epoch 43, step 15883: val_miou_3 was not in top 2
+Epoch 44: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.153, v_num=32, val_miou_old/dataloader_idx_0=0.509, val_loss/dataloader_idx_0=0.2tensor([441.3792,  94.5967, 415.8212, 241.0211, 194.6969]) tensor([591., 401., 619., 413., 476.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([231.8764, 262.7099, 429.6370,  75.0850, 273.0737]) tensor([313., 563., 661., 569., 394.])
+tensor([ 47.2612, 348.1287, 174.6370, 131.7545, 597.5152]) tensor([ 222.,  492.,  251.,  214., 1321.])
+tensor([ 88.0265, 266.2504, 164.3272, 364.5024, 128.3477]) tensor([464., 416., 599., 568., 453.])
+Epoch 44: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.153, v_num=32, val_miou_old/dataloader_idx_0=0.512, val_loss/dataloader_idx_0=0.2Epoch 44, step 16244: val_miou_0 was not in top 2                                                                                            
+Epoch 44, step 16244: val_miou_1 was not in top 2
+Epoch 44, step 16244: val_miou_2 was not in top 2
+Epoch 44, step 16244: val_miou_3 was not in top 2
+Epoch 45: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.157, v_num=32, val_miou_old/dataloader_idx_0=0.512, val_loss/dataloader_idx_0=0.2tensor([417.2744,  84.6758, 387.2852, 231.8692, 192.2129]) tensor([561., 430., 589., 428., 492.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([240.3774, 253.0171, 402.6344,  75.8973, 264.5435]) tensor([343., 555., 663., 560., 379.])
+tensor([ 35.9591, 307.6461, 190.5016, 112.7329, 604.5086]) tensor([ 235.,  451.,  281.,  199., 1334.])
+tensor([ 88.0545, 256.3363, 157.2192, 405.8356, 156.0874]) tensor([465., 374., 541., 636., 484.])
+Epoch 45: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.157, v_num=32, val_miou_old/dataloader_idx_0=0.494, val_loss/dataloader_idx_0=0.2Epoch 45, step 16605: val_miou_0 was not in top 2                                                                                            
+Epoch 45, step 16605: val_miou_1 was not in top 2
+Epoch 45, step 16605: val_miou_2 was not in top 2
+Epoch 45, step 16605: val_miou_3 was not in top 2
+Epoch 46: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.174, v_num=32, val_miou_old/dataloader_idx_0=0.494, val_loss/dataloader_idx_0=0.2tensor([393.3081,  97.2376, 421.0012, 230.9979, 201.5362]) tensor([530., 433., 637., 422., 478.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([221.1743, 242.9801, 398.1156,  87.1267, 249.8461]) tensor([326., 524., 629., 655., 366.])
+tensor([ 42.9240, 311.6569, 173.7814, 131.5970, 591.6192]) tensor([ 222.,  462.,  251.,  234., 1331.])
+tensor([ 73.8917, 255.3870, 143.7896, 373.1113, 150.1892]) tensor([449., 364., 569., 655., 463.])
+Epoch 46: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.174, v_num=32, val_miou_old/dataloader_idx_0=0.513, val_loss/dataloader_idx_0=0.2Epoch 46, step 16966: val_miou_0 was not in top 2                                                                                            
+Epoch 46, step 16966: val_miou_1 was not in top 2
+Epoch 46, step 16966: val_miou_2 was not in top 2
+Epoch 46, step 16966: val_miou_3 was not in top 2
+Epoch 47: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.156, v_num=32, val_miou_old/dataloader_idx_0=0.513, val_loss/dataloader_idx_0=0.2tensor([414.1670, 103.3664, 425.2024, 247.1317, 197.4714]) tensor([562., 431., 615., 419., 473.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([248.1850, 252.4748, 421.3819,  85.1362, 276.3365]) tensor([338., 526., 668., 578., 390.])
+tensor([ 56.7944, 313.6429, 175.6437, 122.4639, 657.4521]) tensor([ 246.,  437.,  240.,  192., 1385.])
+tensor([ 85.8116, 242.9283, 195.0739, 370.0921, 156.8362]) tensor([464., 365., 582., 604., 485.])
+Epoch 47: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.156, v_num=32, val_miou_old/dataloader_idx_0=0.508, val_loss/dataloader_idx_0=0.2Epoch 47, step 17327: val_miou_0 was not in top 2                                                                                            
+Epoch 47, step 17327: val_miou_1 was not in top 2
+Epoch 47, global step 17327: val_miou_2 reached 0.55859 (best 0.55911), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=47-step=17327.ckpt" as top 2
+Epoch 47, step 17327: val_miou_3 was not in top 2
+Epoch 48: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.162, v_num=32, val_miou_old/dataloader_idx_0=0.508, val_loss/dataloader_idx_0=0.2tensor([393.3456,  62.8136, 379.2576, 208.0283, 176.0856]) tensor([574., 424., 626., 399., 477.])██████████| 316/316 [09:28<00:00,  1.34s/it]
+tensor([254.4749, 245.9666, 395.6867,  70.0748, 229.2051]) tensor([361., 553., 650., 560., 376.])
+tensor([ 31.4107, 295.2760, 156.0949, 122.4107, 557.0690]) tensor([ 205.,  485.,  247.,  201., 1362.])
+tensor([ 96.4432, 230.4752, 152.4180, 321.5486, 144.9641]) tensor([484., 390., 572., 588., 466.])
+Epoch 48: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.162, v_num=32, val_miou_old/dataloader_idx_0=0.465, val_loss/dataloader_idx_0=0.2Epoch 48, step 17688: val_miou_0 was not in top 2                                                                                            
+Epoch 48, step 17688: val_miou_1 was not in top 2
+Epoch 48, step 17688: val_miou_2 was not in top 2
+Epoch 48, step 17688: val_miou_3 was not in top 2
+Epoch 49: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.157, v_num=32, val_miou_old/dataloader_idx_0=0.465, val_loss/dataloader_idx_0=0.2tensor([391.3937,  99.2695, 413.6516, 194.1385, 195.7639]) tensor([556., 453., 641., 378., 472.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([249.6732, 259.4812, 407.8180,  76.4716, 230.0412]) tensor([350., 544., 683., 572., 351.])
+tensor([ 44.5180, 293.7966, 152.4371, 120.8439, 612.9831]) tensor([ 249.,  419.,  238.,  204., 1390.])
+tensor([100.3010, 229.2266, 157.4705, 370.9687, 147.9380]) tensor([445., 380., 578., 617., 480.])
+Epoch 49: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.157, v_num=32, val_miou_old/dataloader_idx_0=0.495, val_loss/dataloader_idx_0=0.2Epoch 49, step 18049: val_miou_0 was not in top 2                                                                                            
+Epoch 49, step 18049: val_miou_1 was not in top 2
+Epoch 49, step 18049: val_miou_2 was not in top 2
+Epoch 49, step 18049: val_miou_3 was not in top 2
+Epoch 50: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.161, v_num=32, val_miou_old/dataloader_idx_0=0.495, val_loss/dataloader_idx_0=0.2tensor([358.4684,  85.5409, 419.1789, 242.2670, 169.7073]) tensor([555., 434., 635., 424., 452.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([250.5030, 258.8269, 411.7939,  81.8878, 220.2371]) tensor([343., 556., 681., 573., 347.])
+tensor([ 33.1343, 314.6958, 159.9037, 125.5185, 600.1930]) tensor([ 205.,  467.,  238.,  206., 1384.])
+tensor([ 82.0506, 246.4775, 145.9271, 323.0273, 155.3695]) tensor([448., 393., 552., 603., 504.])
+Epoch 50: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.161, v_num=32, val_miou_old/dataloader_idx_0=0.477, val_loss/dataloader_idx_0=0.2Epoch 50, step 18410: val_miou_0 was not in top 2                                                                                            
+Epoch 50, step 18410: val_miou_1 was not in top 2
+Epoch 50, step 18410: val_miou_2 was not in top 2
+Epoch 50, step 18410: val_miou_3 was not in top 2
+Epoch 51: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.173, v_num=32, val_miou_old/dataloader_idx_0=0.477, val_loss/dataloader_idx_0=0.2tensor([407.0652,  87.3570, 398.2061, 233.5410, 194.9777]) tensor([556., 408., 613., 412., 511.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([237.9396, 282.7749, 390.1389,  84.9507, 247.1327]) tensor([339., 577., 624., 592., 368.])
+tensor([ 46.2570, 323.0135, 152.9792, 133.7769, 579.5314]) tensor([ 237.,  482.,  228.,  214., 1339.])
+tensor([ 88.9181, 241.5977, 156.0358, 403.0652, 144.5206]) tensor([452., 366., 553., 664., 465.])
+Epoch 51: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.173, v_num=32, val_miou_old/dataloader_idx_0=0.504, val_loss/dataloader_idx_0=0.2Epoch 51, step 18771: val_miou_0 was not in top 2                                                                                            
+Epoch 51, step 18771: val_miou_1 was not in top 2
+Epoch 51, step 18771: val_miou_2 was not in top 2
+Epoch 51, step 18771: val_miou_3 was not in top 2
+Epoch 52: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.169, v_num=32, val_miou_old/dataloader_idx_0=0.504, val_loss/dataloader_idx_0=0.2tensor([411.9856,  94.9399, 444.9839, 250.4653, 209.3252]) tensor([532., 401., 643., 427., 497.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([242.9765, 253.9488, 422.4401,  95.4431, 257.0344]) tensor([330., 533., 667., 596., 374.])
+tensor([ 45.0386, 339.6432, 155.2018, 126.2103, 649.7199]) tensor([ 216.,  483.,  223.,  207., 1371.])
+tensor([ 89.7572, 265.4849, 172.5083, 383.3958, 146.0659]) tensor([461., 376., 576., 613., 474.])
+Epoch 52: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.169, v_num=32, val_miou_old/dataloader_idx_0=0.510, val_loss/dataloader_idx_0=0.2Epoch 52, global step 19132: val_miou_0 reached 0.54219 (best 0.54219), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=52-step=19132.ckpt" as top 2
+Epoch 52, step 19132: val_miou_1 was not in top 2
+Epoch 52, step 19132: val_miou_2 was not in top 2
+Epoch 52, step 19132: val_miou_3 was not in top 2
+Epoch 53: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.159, v_num=32, val_miou_old/dataloader_idx_0=0.510, val_loss/dataloader_idx_0=0.2tensor([439.0815, 107.3397, 471.8305, 229.6280, 194.5021]) tensor([547., 441., 668., 381., 463.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([238.9964, 232.7802, 418.4637,  81.7614, 292.2985]) tensor([329., 521., 635., 600., 415.])
+tensor([ 46.2412, 358.1943, 155.6079, 129.6687, 604.4356]) tensor([ 222.,  507.,  221.,  208., 1342.])
+tensor([ 98.5452, 268.3711, 154.5634, 417.4434, 130.9559]) tensor([490., 382., 548., 650., 430.])
+Epoch 53: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.159, v_num=32, val_miou_old/dataloader_idx_0=0.535, val_loss/dataloader_idx_0=0.2Epoch 53, global step 19493: val_miou_0 reached 0.55505 (best 0.55505), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=53-step=19493.ckpt" as top 2
+Epoch 53, step 19493: val_miou_1 was not in top 2
+Epoch 53, step 19493: val_miou_2 was not in top 2
+Epoch 53, step 19493: val_miou_3 was not in top 2
+Epoch 54: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.158, v_num=32, val_miou_old/dataloader_idx_0=0.535, val_loss/dataloader_idx_0=0.2tensor([409.4493, 100.7269, 417.5084, 246.8175, 235.3687]) tensor([529., 408., 610., 407., 546.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([242.0657, 253.7746, 382.5045,  97.0416, 257.9397]) tensor([322., 525., 633., 652., 368.])
+tensor([ 54.2797, 323.4041, 149.3135, 131.0654, 601.1146]) tensor([ 218.,  480.,  220.,  218., 1364.])
+tensor([ 88.4673, 269.9965, 168.4630, 406.7830, 135.2750]) tensor([465., 376., 554., 655., 450.])
+Epoch 54: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.158, v_num=32, val_miou_old/dataloader_idx_0=0.534, val_loss/dataloader_idx_0=0.2Epoch 54, global step 19854: val_miou_0 reached 0.54857 (best 0.55505), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=54-step=19854.ckpt" as top 2
+Epoch 54, step 19854: val_miou_1 was not in top 2
+Epoch 54, step 19854: val_miou_2 was not in top 2
+Epoch 54, step 19854: val_miou_3 was not in top 2
+Epoch 55: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.159, v_num=32, val_miou_old/dataloader_idx_0=0.534, val_loss/dataloader_idx_0=0.2tensor([400.5258, 101.7683, 427.8279, 236.7971, 197.5995]) tensor([545., 435., 631., 388., 501.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([235.2656, 245.1683, 388.8372,  93.0231, 248.1358]) tensor([336., 552., 644., 591., 377.])
+tensor([ 48.2974, 332.4072, 176.1411, 134.9347, 544.1450]) tensor([ 222.,  478.,  244.,  230., 1326.])
+tensor([ 96.3225, 261.6626, 148.3022, 367.3650, 149.9849]) tensor([445., 406., 569., 635., 445.])
+Epoch 55: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.159, v_num=32, val_miou_old/dataloader_idx_0=0.509, val_loss/dataloader_idx_0=0.2Epoch 55, step 20215: val_miou_0 was not in top 2                                                                                            
+Epoch 55, step 20215: val_miou_1 was not in top 2
+Epoch 55, step 20215: val_miou_2 was not in top 2
+Epoch 55, step 20215: val_miou_3 was not in top 2
+Epoch 56: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.179, v_num=32, val_miou_old/dataloader_idx_0=0.509, val_loss/dataloader_idx_0=0.2tensor([440.4492, 104.1229, 415.8335, 252.1205, 187.4538]) tensor([576., 429., 599., 422., 474.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([247.3656, 246.8305, 403.7865,  85.9873, 233.0108]) tensor([347., 552., 651., 605., 345.])
+tensor([ 44.7785, 344.9528, 162.6966, 143.0929, 593.9501]) tensor([ 222.,  486.,  232.,  217., 1343.])
+tensor([111.9091, 291.2210, 165.0281, 341.5644, 172.7062]) tensor([499., 416., 535., 569., 481.])
+Epoch 56: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.179, v_num=32, val_miou_old/dataloader_idx_0=0.521, val_loss/dataloader_idx_0=0.2Epoch 56, step 20576: val_miou_0 was not in top 2                                                                                            
+Epoch 56, step 20576: val_miou_1 was not in top 2
+Epoch 56, step 20576: val_miou_2 was not in top 2
+Epoch 56, global step 20576: val_miou_3 reached 0.43843 (best 0.43843), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=56-step=20576.ckpt" as top 2
+Epoch 57: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.166, v_num=32, val_miou_old/dataloader_idx_0=0.521, val_loss/dataloader_idx_0=0.2tensor([386.5839,  80.2445, 416.7697, 227.0081, 192.3788]) tensor([557., 408., 634., 409., 492.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([237.7518, 274.5509, 367.9700,  93.1959, 262.2102]) tensor([338., 568., 602., 626., 366.])
+tensor([ 51.4025, 318.5151, 177.1972, 125.3644, 623.7115]) tensor([ 231.,  455.,  250.,  205., 1359.])
+tensor([ 90.7886, 281.3018, 188.0673, 305.9356, 139.5902]) tensor([491., 410., 564., 597., 438.])
+Epoch 57: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.166, v_num=32, val_miou_old/dataloader_idx_0=0.483, val_loss/dataloader_idx_0=0.2Epoch 57, step 20937: val_miou_0 was not in top 2                                                                                            
+Epoch 57, step 20937: val_miou_1 was not in top 2
+Epoch 57, step 20937: val_miou_2 was not in top 2
+Epoch 57, step 20937: val_miou_3 was not in top 2
+Epoch 58: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.16, v_num=32, val_miou_old/dataloader_idx_0=0.483, val_loss/dataloader_idx_0=0.29tensor([415.0834,  92.1427, 417.9066, 255.2440, 182.8220]) tensor([552., 413., 622., 444., 469.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([253.1816, 255.0243, 373.2528,  85.0911, 279.6611]) tensor([358., 555., 590., 599., 398.])
+tensor([ 43.4336, 325.3229, 165.8607, 139.5811, 631.1439]) tensor([ 233.,  465.,  237.,  223., 1342.])
+tensor([108.2915, 271.4055, 137.6315, 356.9747, 164.4136]) tensor([484., 390., 531., 597., 498.])
+Epoch 58: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.16, v_num=32, val_miou_old/dataloader_idx_0=0.513, val_loss/dataloader_idx_0=0.28Epoch 58, step 21298: val_miou_0 was not in top 2                                                                                            
+Epoch 58, step 21298: val_miou_1 was not in top 2
+Epoch 58, step 21298: val_miou_2 was not in top 2
+Epoch 58, step 21298: val_miou_3 was not in top 2
+Epoch 59: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.142, v_num=32, val_miou_old/dataloader_idx_0=0.513, val_loss/dataloader_idx_0=0.2tensor([432.1711, 101.9214, 404.7182, 271.4523, 189.8402]) tensor([598., 421., 591., 436., 454.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([233.7731, 264.5873, 427.3416,  79.9142, 271.0383]) tensor([355., 536., 641., 574., 394.])
+tensor([ 43.4353, 323.0624, 166.1458, 138.4898, 615.5807]) tensor([ 214.,  460.,  241.,  222., 1363.])
+tensor([ 86.9398, 243.1965, 160.7472, 359.8066, 145.1145]) tensor([476., 371., 566., 604., 483.])
+Epoch 59: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.142, v_num=32, val_miou_old/dataloader_idx_0=0.533, val_loss/dataloader_idx_0=0.2Epoch 59, step 21659: val_miou_0 was not in top 2                                                                                            
+Epoch 59, step 21659: val_miou_1 was not in top 2
+Epoch 59, step 21659: val_miou_2 was not in top 2
+Epoch 59, step 21659: val_miou_3 was not in top 2
+Epoch 60: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.169, v_num=32, val_miou_old/dataloader_idx_0=0.533, val_loss/dataloader_idx_0=0.2tensor([368.1139,  68.1233, 330.9655, 217.7558, 191.9731]) tensor([552., 415., 603., 409., 521.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([254.9695, 250.6059, 359.5026,  63.4421, 236.7831]) tensor([360., 569., 637., 569., 365.])
+tensor([ 39.0711, 303.8954, 138.5229, 111.8404, 556.6978]) tensor([ 221.,  470.,  225.,  214., 1370.])
+tensor([ 69.0093, 242.7838, 164.6246, 325.3254, 145.6821]) tensor([467., 403., 568., 594., 468.])
+Epoch 60: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.169, v_num=32, val_miou_old/dataloader_idx_0=0.467, val_loss/dataloader_idx_0=0.2Epoch 60, step 22020: val_miou_0 was not in top 2                                                                                            
+Epoch 60, step 22020: val_miou_1 was not in top 2
+Epoch 60, step 22020: val_miou_2 was not in top 2
+Epoch 60, step 22020: val_miou_3 was not in top 2
+Epoch 61: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.154, v_num=32, val_miou_old/dataloader_idx_0=0.467, val_loss/dataloader_idx_0=0.2tensor([416.5784,  89.9137, 393.4987, 215.0866, 209.7868]) tensor([567., 429., 619., 380., 505.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([260.9205, 232.8114, 429.2728,  70.5789, 223.5395]) tensor([360., 516., 674., 618., 332.])
+tensor([ 44.1999, 311.0110, 164.0452, 144.8031, 573.3456]) tensor([ 207.,  450.,  241.,  244., 1358.])
+tensor([ 84.4549, 267.8065, 167.0983, 338.7292, 154.6979]) tensor([445., 407., 564., 615., 469.])
+Epoch 61: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.154, v_num=32, val_miou_old/dataloader_idx_0=0.504, val_loss/dataloader_idx_0=0.2Epoch 61, step 22381: val_miou_0 was not in top 2                                                                                            
+Epoch 61, step 22381: val_miou_1 was not in top 2
+Epoch 61, step 22381: val_miou_2 was not in top 2
+Epoch 61, step 22381: val_miou_3 was not in top 2
+Epoch 62: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.158, v_num=32, val_miou_old/dataloader_idx_0=0.504, val_loss/dataloader_idx_0=0.2tensor([398.1937,  99.0153, 371.1112, 206.6195, 185.7431]) tensor([571., 429., 599., 416., 485.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([241.7822, 255.0921, 414.4137,  99.1648, 258.8431]) tensor([332., 530., 678., 602., 358.])
+tensor([ 44.2660, 344.8712, 181.5065, 118.8627, 597.3992]) tensor([ 230.,  494.,  260.,  195., 1321.])
+tensor([ 87.5217, 260.6450, 176.1657, 367.1830, 148.1194]) tensor([483., 389., 542., 627., 459.])
+Epoch 62: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.158, v_num=32, val_miou_old/dataloader_idx_0=0.474, val_loss/dataloader_idx_0=0.2Epoch 62, step 22742: val_miou_0 was not in top 2                                                                                            
+Epoch 62, step 22742: val_miou_1 was not in top 2
+Epoch 62, step 22742: val_miou_2 was not in top 2
+Epoch 62, step 22742: val_miou_3 was not in top 2
+Epoch 63: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.149, v_num=32, val_miou_old/dataloader_idx_0=0.474, val_loss/dataloader_idx_0=0.2tensor([385.3627,  85.2599, 397.7879, 212.7568, 189.5906]) tensor([537., 450., 618., 395., 500.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([235.2805, 233.3349, 379.9109,  73.9713, 240.2864]) tensor([337., 530., 627., 644., 362.])
+tensor([ 34.9051, 306.6725, 172.1095, 131.3985, 534.0773]) tensor([ 235.,  462.,  272.,  221., 1310.])
+tensor([ 87.2624, 253.7040, 140.6347, 307.5690, 124.0104]) tensor([507., 408., 551., 561., 473.])
+Epoch 63: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.149, v_num=32, val_miou_old/dataloader_idx_0=0.491, val_loss/dataloader_idx_0=0.2Epoch 63, step 23103: val_miou_0 was not in top 2                                                                                            
+Epoch 63, step 23103: val_miou_1 was not in top 2
+Epoch 63, step 23103: val_miou_2 was not in top 2
+Epoch 63, step 23103: val_miou_3 was not in top 2
+Epoch 64: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.155, v_num=32, val_miou_old/dataloader_idx_0=0.491, val_loss/dataloader_idx_0=0.2tensor([428.3563,  96.7337, 406.5838, 256.7057, 193.1947]) tensor([575., 419., 600., 426., 480.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([223.8647, 251.4165, 402.7575,  91.9435, 283.3907]) tensor([279., 554., 655., 601., 411.])
+tensor([ 50.4256, 301.6685, 168.0257, 135.7292, 618.3713]) tensor([ 235.,  440.,  241.,  233., 1351.])
+tensor([ 97.4796, 276.0853, 179.3438, 374.5681, 133.8925]) tensor([457., 416., 556., 641., 430.])
+Epoch 64: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.155, v_num=32, val_miou_old/dataloader_idx_0=0.506, val_loss/dataloader_idx_0=0.2Epoch 64, step 23464: val_miou_0 was not in top 2                                                                                            
+Epoch 64, step 23464: val_miou_1 was not in top 2
+Epoch 64, step 23464: val_miou_2 was not in top 2
+Epoch 64, step 23464: val_miou_3 was not in top 2
+Epoch 65: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.151, v_num=32, val_miou_old/dataloader_idx_0=0.506, val_loss/dataloader_idx_0=0.2tensor([383.6226, 102.0284, 414.7399, 213.8588, 182.7466]) tensor([561., 449., 613., 399., 478.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([250.1134, 240.2907, 416.6680,  84.6952, 250.9340]) tensor([335., 534., 630., 644., 357.])
+tensor([ 51.7872, 338.2993, 166.0279, 129.1497, 628.0909]) tensor([ 223.,  481.,  252.,  209., 1335.])
+tensor([ 92.1142, 229.8830, 170.6438, 394.8236, 146.4747]) tensor([465., 378., 550., 642., 465.])
+Epoch 65: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.151, v_num=32, val_miou_old/dataloader_idx_0=0.480, val_loss/dataloader_idx_0=0.2Epoch 65, step 23825: val_miou_0 was not in top 2                                                                                            
+Epoch 65, step 23825: val_miou_1 was not in top 2
+Epoch 65, step 23825: val_miou_2 was not in top 2
+Epoch 65, step 23825: val_miou_3 was not in top 2
+Epoch 66: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.143, v_num=32, val_miou_old/dataloader_idx_0=0.480, val_loss/dataloader_idx_0=0.2tensor([412.5413,  94.1520, 400.8171, 234.5994, 197.1303]) tensor([561., 432., 592., 403., 512.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([226.3838, 239.3623, 419.3751,  82.2086, 261.7764]) tensor([334., 540., 651., 592., 383.])
+tensor([ 41.4346, 313.0953, 178.7611, 133.8099, 604.3939]) tensor([ 210.,  450.,  251.,  221., 1368.])
+tensor([100.3299, 259.8134, 164.2351, 332.6682, 150.9724]) tensor([479., 376., 577., 607., 461.])
+Epoch 66: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.143, v_num=32, val_miou_old/dataloader_idx_0=0.512, val_loss/dataloader_idx_0=0.2Epoch 66, step 24186: val_miou_0 was not in top 2                                                                                            
+Epoch 66, step 24186: val_miou_1 was not in top 2
+Epoch 66, step 24186: val_miou_2 was not in top 2
+Epoch 66, step 24186: val_miou_3 was not in top 2
+Epoch 67: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.159, v_num=32, val_miou_old/dataloader_idx_0=0.512, val_loss/dataloader_idx_0=0.2tensor([339.6337,  63.0274, 344.2105, 199.2159, 206.3048]) tensor([525., 428., 611., 396., 540.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([252.2972, 232.3271, 355.2659,  64.5593, 270.3104]) tensor([359., 560., 628., 559., 394.])
+tensor([ 41.0332, 273.7850, 163.3010, 136.3831, 539.2792]) tensor([ 226.,  429.,  253.,  252., 1340.])
+tensor([ 75.3384, 214.3131, 136.2143, 336.1955, 124.3906]) tensor([468., 383., 600., 621., 428.])
+Epoch 67: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.159, v_num=32, val_miou_old/dataloader_idx_0=0.463, val_loss/dataloader_idx_0=0.2Epoch 67, step 24547: val_miou_0 was not in top 2                                                                                            
+Epoch 67, step 24547: val_miou_1 was not in top 2
+Epoch 67, step 24547: val_miou_2 was not in top 2
+Epoch 67, step 24547: val_miou_3 was not in top 2
+Epoch 68: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.147, v_num=32, val_miou_old/dataloader_idx_0=0.463, val_loss/dataloader_idx_0=0.2tensor([362.9337,  82.4413, 393.7569, 201.2159, 181.4043]) tensor([552., 418., 633., 396., 501.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([247.3561, 256.4260, 372.0701,  80.0144, 258.2023]) tensor([339., 545., 649., 585., 382.])
+tensor([ 35.6448, 294.4527, 186.5282, 118.7450, 589.2845]) tensor([ 240.,  455.,  267.,  203., 1335.])
+tensor([ 72.2550, 295.3284, 153.4759, 329.2241, 154.3346]) tensor([445., 443., 528., 615., 469.])
+Epoch 68: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.147, v_num=32, val_miou_old/dataloader_idx_0=0.465, val_loss/dataloader_idx_0=0.2Epoch 68, step 24908: val_miou_0 was not in top 2                                                                                            
+Epoch 68, step 24908: val_miou_1 was not in top 2
+Epoch 68, step 24908: val_miou_2 was not in top 2
+Epoch 68, step 24908: val_miou_3 was not in top 2
+Epoch 69: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.161, v_num=32, val_miou_old/dataloader_idx_0=0.465, val_loss/dataloader_idx_0=0.2tensor([399.8271,  93.8247, 422.5272, 260.1459, 195.6067]) tensor([526., 385., 651., 441., 497.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([251.0944, 256.8163, 404.0282,  76.6917, 268.8921]) tensor([340., 527., 619., 620., 394.])
+tensor([ 35.9624, 349.2098, 170.4607, 140.5415, 605.6947]) tensor([ 218.,  489.,  239.,  226., 1328.])
+tensor([ 87.7740, 292.2446, 162.1885, 389.2929, 146.1821]) tensor([465., 403., 556., 615., 461.])
+Epoch 69: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.161, v_num=32, val_miou_old/dataloader_idx_0=0.521, val_loss/dataloader_idx_0=0.2Epoch 69, step 25269: val_miou_0 was not in top 2                                                                                            
+Epoch 69, step 25269: val_miou_1 was not in top 2
+Epoch 69, step 25269: val_miou_2 was not in top 2
+Epoch 69, step 25269: val_miou_3 was not in top 2
+Epoch 70: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.151, v_num=32, val_miou_old/dataloader_idx_0=0.521, val_loss/dataloader_idx_0=0.2tensor([363.2252,  68.6450, 380.6288, 185.6931, 182.2978]) tensor([564., 403., 655., 400., 478.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([231.0679, 214.9142, 369.0256,  76.6068, 228.6651]) tensor([349., 517., 638., 626., 370.])
+tensor([ 42.4884, 257.4107, 188.1808, 127.9660, 555.3679]) tensor([ 223.,  423.,  267.,  227., 1360.])
+tensor([ 94.9571, 228.6807, 138.4925, 301.2449, 134.6968]) tensor([497., 394., 574., 588., 447.])
+Epoch 70: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.151, v_num=32, val_miou_old/dataloader_idx_0=0.464, val_loss/dataloader_idx_0=0.2Epoch 70, step 25630: val_miou_0 was not in top 2                                                                                            
+Epoch 70, step 25630: val_miou_1 was not in top 2
+Epoch 70, step 25630: val_miou_2 was not in top 2
+Epoch 70, step 25630: val_miou_3 was not in top 2
+Epoch 71: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.163, v_num=32, val_miou_old/dataloader_idx_0=0.464, val_loss/dataloader_idx_0=0.2tensor([373.5704,  85.2778, 422.8853, 235.1414, 198.5784]) tensor([518., 412., 638., 426., 506.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([262.4710, 213.6925, 401.6873,  71.7455, 254.4894]) tensor([355., 524., 649., 578., 394.])
+tensor([ 45.2153, 330.6434, 176.3560, 125.6388, 554.9168]) tensor([ 239.,  488.,  249.,  208., 1316.])
+tensor([ 98.4874, 256.6101, 156.6170, 347.0868, 137.1616]) tensor([473., 381., 582., 623., 441.])
+Epoch 71: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.163, v_num=32, val_miou_old/dataloader_idx_0=0.495, val_loss/dataloader_idx_0=0.2Epoch 71, step 25991: val_miou_0 was not in top 2                                                                                            
+Epoch 71, step 25991: val_miou_1 was not in top 2
+Epoch 71, step 25991: val_miou_2 was not in top 2
+Epoch 71, step 25991: val_miou_3 was not in top 2
+Epoch 72: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.15, v_num=32, val_miou_old/dataloader_idx_0=0.495, val_loss/dataloader_idx_0=0.25tensor([418.5498,  91.5535, 362.1612, 216.1403, 200.3614]) tensor([560., 404., 586., 417., 533.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([252.2816, 238.7311, 411.6738,  76.0017, 287.2803]) tensor([343., 517., 677., 561., 402.])
+tensor([ 44.6456, 297.1451, 190.3122, 129.5912, 580.8674]) tensor([ 222.,  456.,  270.,  208., 1344.])
+tensor([ 98.0529, 271.5990, 173.9277, 374.7953, 160.8965]) tensor([469., 379., 556., 612., 484.])
+Epoch 72: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.15, v_num=32, val_miou_old/dataloader_idx_0=0.483, val_loss/dataloader_idx_0=0.26Epoch 72, step 26352: val_miou_0 was not in top 2                                                                                            
+Epoch 72, step 26352: val_miou_1 was not in top 2
+Epoch 72, step 26352: val_miou_2 was not in top 2
+Epoch 72, global step 26352: val_miou_3 reached 0.43667 (best 0.43843), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=72-step=26352.ckpt" as top 2
+Epoch 73: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.153, v_num=32, val_miou_old/dataloader_idx_0=0.483, val_loss/dataloader_idx_0=0.2tensor([421.3798,  95.1896, 410.6935, 249.3368, 209.1255]) tensor([564., 404., 606., 435., 491.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([253.0708, 248.1607, 419.5392,  98.8962, 256.3407]) tensor([333., 502., 646., 661., 358.])
+tensor([ 42.9760, 306.3815, 176.8586, 128.2772, 599.4710]) tensor([ 235.,  454.,  259.,  220., 1332.])
+tensor([ 82.8008, 292.1600, 180.2459, 375.5600, 131.3577]) tensor([458., 438., 547., 589., 468.])
+Epoch 73: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.153, v_num=32, val_miou_old/dataloader_idx_0=0.527, val_loss/dataloader_idx_0=0.2Epoch 73, step 26713: val_miou_0 was not in top 2                                                                                            
+Epoch 73, step 26713: val_miou_1 was not in top 2
+Epoch 73, step 26713: val_miou_2 was not in top 2
+Epoch 73, step 26713: val_miou_3 was not in top 2
+Epoch 74: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.147, v_num=32, val_miou_old/dataloader_idx_0=0.527, val_loss/dataloader_idx_0=0.2tensor([412.3797, 102.7850, 419.2999, 248.8695, 189.2538]) tensor([551., 421., 609., 409., 510.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([252.5488, 262.2632, 415.5156,  84.2015, 267.6620]) tensor([350., 566., 672., 524., 388.])
+tensor([ 49.5312, 307.6750, 175.4253, 128.9117, 598.8116]) tensor([ 211.,  458.,  252.,  203., 1376.])
+tensor([107.1734, 256.0773, 154.6546, 363.6848, 158.6338]) tensor([496., 390., 562., 570., 482.])
+Epoch 74: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.147, v_num=32, val_miou_old/dataloader_idx_0=0.517, val_loss/dataloader_idx_0=0.2Epoch 74, step 27074: val_miou_0 was not in top 2                                                                                            
+Epoch 74, step 27074: val_miou_1 was not in top 2
+Epoch 74, step 27074: val_miou_2 was not in top 2
+Epoch 74, step 27074: val_miou_3 was not in top 2
+Epoch 75: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.153, v_num=32, val_miou_old/dataloader_idx_0=0.517, val_loss/dataloader_idx_0=0.2tensor([368.6572,  83.6179, 422.3573, 219.4647, 200.6468]) tensor([522., 414., 644., 393., 527.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([240.2187, 260.8193, 398.5664,  95.2393, 259.4362]) tensor([334., 543., 655., 578., 390.])
+tensor([ 50.8836, 323.8346, 159.8820, 122.8858, 603.8607]) tensor([ 248.,  477.,  236.,  198., 1341.])
+tensor([ 96.6009, 252.1417, 194.4039, 348.7904, 155.8204]) tensor([484., 401., 563., 567., 485.])
+Epoch 75: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.153, v_num=32, val_miou_old/dataloader_idx_0=0.493, val_loss/dataloader_idx_0=0.2Epoch 75, step 27435: val_miou_0 was not in top 2                                                                                            
+Epoch 75, step 27435: val_miou_1 was not in top 2
+Epoch 75, step 27435: val_miou_2 was not in top 2
+Epoch 75, step 27435: val_miou_3 was not in top 2
+Epoch 76: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.151, v_num=32, val_miou_old/dataloader_idx_0=0.493, val_loss/dataloader_idx_0=0.2tensor([416.0786,  97.5360, 372.8584, 226.5614, 182.0081]) tensor([585., 431., 584., 424., 476.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([236.0747, 255.6319, 452.7903,  75.8270, 248.9101]) tensor([325., 538., 676., 589., 372.])
+tensor([ 38.9817, 319.9445, 176.0948, 121.4970, 587.2349]) tensor([ 206.,  469.,  263.,  205., 1357.])
+tensor([ 80.0318, 271.9878, 169.6638, 339.3241, 171.0151]) tensor([448., 412., 557., 600., 483.])
+Epoch 76: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.151, v_num=32, val_miou_old/dataloader_idx_0=0.496, val_loss/dataloader_idx_0=0.2Epoch 76, step 27796: val_miou_0 was not in top 2                                                                                            
+Epoch 76, step 27796: val_miou_1 was not in top 2
+Epoch 76, step 27796: val_miou_2 was not in top 2
+Epoch 76, step 27796: val_miou_3 was not in top 2
+Epoch 77: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.141, v_num=32, val_miou_old/dataloader_idx_0=0.496, val_loss/dataloader_idx_0=0.2tensor([365.8037,  69.6655, 364.8571, 211.0238, 164.6118]) tensor([573., 417., 616., 412., 482.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([248.1741, 257.2766, 366.2489,  78.6758, 264.8018]) tensor([340., 553., 637., 593., 377.])
+tensor([ 54.6619, 315.0477, 148.3847, 128.2531, 589.9941]) tensor([ 233.,  483.,  221.,  217., 1346.])
+tensor([ 83.3591, 240.9985, 162.5612, 400.2996, 152.1649]) tensor([461., 379., 537., 653., 470.])
+Epoch 77: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.141, v_num=32, val_miou_old/dataloader_idx_0=0.450, val_loss/dataloader_idx_0=0.2Epoch 77, step 28157: val_miou_0 was not in top 2                                                                                            
+Epoch 77, step 28157: val_miou_1 was not in top 2
+Epoch 77, step 28157: val_miou_2 was not in top 2
+Epoch 77, step 28157: val_miou_3 was not in top 2
+Epoch 78: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.142, v_num=32, val_miou_old/dataloader_idx_0=0.450, val_loss/dataloader_idx_0=0.2tensor([388.4704,  96.6712, 401.3982, 240.7658, 207.6647]) tensor([562., 425., 602., 428., 483.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([232.4865, 229.3136, 394.8105,  87.6648, 248.2445]) tensor([336., 543., 640., 603., 378.])
+tensor([ 42.2991, 310.8221, 170.7112, 117.7047, 617.2585]) tensor([ 229.,  456.,  242.,  182., 1391.])
+tensor([ 92.2632, 245.7711, 160.5477, 358.4991, 147.9620]) tensor([497., 385., 562., 602., 454.])
+Epoch 78: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.142, v_num=32, val_miou_old/dataloader_idx_0=0.516, val_loss/dataloader_idx_0=0.2Epoch 78, step 28518: val_miou_0 was not in top 2                                                                                            
+Epoch 78, step 28518: val_miou_1 was not in top 2
+Epoch 78, step 28518: val_miou_2 was not in top 2
+Epoch 78, step 28518: val_miou_3 was not in top 2
+Epoch 79: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.151, v_num=32, val_miou_old/dataloader_idx_0=0.516, val_loss/dataloader_idx_0=0.2tensor([377.4019,  85.2451, 412.8186, 239.0254, 214.7342]) tensor([531., 415., 619., 423., 512.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([251.5187, 240.3883, 385.8960,  73.9613, 272.6348]) tensor([328., 534., 636., 616., 386.])
+tensor([ 39.5796, 329.5920, 176.7090, 134.5638, 571.5574]) tensor([ 229.,  485.,  245.,  223., 1318.])
+tensor([102.4220, 256.1883, 175.1146, 356.3941, 158.9033]) tensor([484., 409., 562., 594., 451.])
+Epoch 79: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.151, v_num=32, val_miou_old/dataloader_idx_0=0.495, val_loss/dataloader_idx_0=0.2Epoch 79, step 28879: val_miou_0 was not in top 2                                                                                            
+Epoch 79, step 28879: val_miou_1 was not in top 2
+Epoch 79, step 28879: val_miou_2 was not in top 2
+Epoch 79, step 28879: val_miou_3 was not in top 2
+Epoch 80: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.142, v_num=32, val_miou_old/dataloader_idx_0=0.495, val_loss/dataloader_idx_0=0.2tensor([390.5019, 102.5655, 434.0927, 249.5106, 212.8923]) tensor([526., 433., 614., 427., 500.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([243.3927, 261.1815, 403.6805,  97.8325, 251.6778]) tensor([317., 541., 644., 631., 367.])
+tensor([ 35.0917, 340.9310, 153.2534, 123.5826, 608.3461]) tensor([ 216.,  495.,  216.,  197., 1376.])
+tensor([109.5801, 265.6653, 182.8769, 394.6108, 166.9472]) tensor([479., 398., 574., 577., 472.])
+Epoch 80: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.142, v_num=32, val_miou_old/dataloader_idx_0=0.523, val_loss/dataloader_idx_0=0.3Epoch 80, step 29240: val_miou_0 was not in top 2                                                                                            
+Epoch 80, step 29240: val_miou_1 was not in top 2
+Epoch 80, step 29240: val_miou_2 was not in top 2
+Epoch 80, global step 29240: val_miou_3 reached 0.45049 (best 0.45049), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=80-step=29240.ckpt" as top 2
+Epoch 81: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.147, v_num=32, val_miou_old/dataloader_idx_0=0.523, val_loss/dataloader_idx_0=0.3tensor([375.5784,  78.0871, 401.2912, 210.4644, 205.5778]) tensor([549., 397., 631., 425., 498.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([267.9138, 256.9931, 386.1843,  81.9205, 263.9035]) tensor([364., 566., 621., 573., 376.])
+tensor([ 32.0131, 309.5391, 161.2786, 130.1623, 588.3705]) tensor([ 210.,  465.,  231.,  216., 1378.])
+tensor([ 97.3512, 227.5045, 168.5956, 387.4383, 137.1940]) tensor([488., 362., 590., 618., 442.])
+Epoch 81: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.147, v_num=32, val_miou_old/dataloader_idx_0=0.506, val_loss/dataloader_idx_0=0.2Epoch 81, step 29601: val_miou_0 was not in top 2                                                                                            
+Epoch 81, step 29601: val_miou_1 was not in top 2
+Epoch 81, step 29601: val_miou_2 was not in top 2
+Epoch 81, step 29601: val_miou_3 was not in top 2
+Epoch 82: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.147, v_num=32, val_miou_old/dataloader_idx_0=0.506, val_loss/dataloader_idx_0=0.2tensor([393.1028,  90.9361, 391.1274, 234.3312, 203.6552]) tensor([566., 420., 598., 418., 498.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([244.0504, 276.1969, 382.5387,  87.2431, 255.5647]) tensor([323., 606., 628., 562., 381.])
+tensor([ 43.6582, 286.2670, 169.2074, 115.9430, 601.0892]) tensor([ 241.,  430.,  257.,  214., 1358.])
+tensor([ 78.9277, 268.3724, 154.4841, 374.2914, 160.7685]) tensor([432., 403., 583., 625., 457.])
+Epoch 82: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.147, v_num=32, val_miou_old/dataloader_idx_0=0.510, val_loss/dataloader_idx_0=0.2Epoch 82, step 29962: val_miou_0 was not in top 2                                                                                            
+Epoch 82, step 29962: val_miou_1 was not in top 2
+Epoch 82, step 29962: val_miou_2 was not in top 2
+Epoch 82, step 29962: val_miou_3 was not in top 2
+Epoch 83: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.152, v_num=32, val_miou_old/dataloader_idx_0=0.510, val_loss/dataloader_idx_0=0.2tensor([433.5702, 108.5571, 411.6309, 260.6941, 193.1669]) tensor([573., 424., 592., 430., 481.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([257.1926, 229.0246, 383.5138,  98.6507, 286.1558]) tensor([355., 520., 603., 615., 407.])
+tensor([ 50.5066, 362.9434, 170.4007, 132.6548, 615.0541]) tensor([ 227.,  498.,  238.,  204., 1333.])
+tensor([111.5016, 306.8239, 162.8561, 394.1546, 143.9584]) tensor([497., 418., 538., 603., 444.])
+Epoch 83: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.152, v_num=32, val_miou_old/dataloader_idx_0=0.527, val_loss/dataloader_idx_0=0.2Epoch 83, step 30323: val_miou_0 was not in top 2                                                                                            
+Epoch 83, step 30323: val_miou_1 was not in top 2
+Epoch 83, step 30323: val_miou_2 was not in top 2
+Epoch 83, global step 30323: val_miou_3 reached 0.44779 (best 0.45049), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=83-step=30323.ckpt" as top 2
+Epoch 84: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.163, v_num=32, val_miou_old/dataloader_idx_0=0.527, val_loss/dataloader_idx_0=0.2tensor([432.4247, 104.4923, 429.7603, 232.7858, 180.2958]) tensor([591., 421., 624., 384., 480.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([274.2594, 258.8640, 392.0457,  80.7365, 248.5600]) tensor([360., 578., 612., 590., 360.])
+tensor([ 42.9333, 321.3752, 199.9121, 130.6564, 618.0920]) tensor([ 214.,  448.,  282.,  206., 1350.])
+tensor([ 94.5175, 301.8824, 147.3349, 373.5567, 143.2823]) tensor([474., 423., 525., 628., 450.])
+Epoch 84: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.163, v_num=32, val_miou_old/dataloader_idx_0=0.503, val_loss/dataloader_idx_0=0.2Epoch 84, step 30684: val_miou_0 was not in top 2                                                                                            
+Epoch 84, step 30684: val_miou_1 was not in top 2
+Epoch 84, step 30684: val_miou_2 was not in top 2
+Epoch 84, step 30684: val_miou_3 was not in top 2
+Epoch 85: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.135, v_num=32, val_miou_old/dataloader_idx_0=0.503, val_loss/dataloader_idx_0=0.2tensor([412.3456,  91.1058, 341.7904, 204.2253, 189.8495]) tensor([601., 447., 580., 390., 482.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([249.0047, 249.0620, 414.0865,  69.6473, 244.8284]) tensor([329., 537., 661., 597., 376.])
+tensor([ 41.6218, 308.7008, 201.6138, 116.5869, 560.7347]) tensor([ 218.,  473.,  279.,  202., 1328.])
+tensor([ 86.7531, 241.0426, 179.0269, 347.0233, 144.9755]) tensor([452., 384., 613., 573., 478.])
+Epoch 85: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.135, v_num=32, val_miou_old/dataloader_idx_0=0.475, val_loss/dataloader_idx_0=0.2Epoch 85, step 31045: val_miou_0 was not in top 2                                                                                            
+Epoch 85, step 31045: val_miou_1 was not in top 2
+Epoch 85, step 31045: val_miou_2 was not in top 2
+Epoch 85, step 31045: val_miou_3 was not in top 2
+Epoch 86: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.143, v_num=32, val_miou_old/dataloader_idx_0=0.475, val_loss/dataloader_idx_0=0.2tensor([382.2432,  99.6913, 388.3810, 214.2709, 178.8262]) tensor([549., 415., 622., 437., 477.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([237.4487, 247.9664, 375.4098,  78.1627, 258.6899]) tensor([330., 544., 631., 609., 386.])
+tensor([ 44.1202, 333.7385, 156.4709, 121.2743, 632.5714]) tensor([ 223.,  478.,  232.,  197., 1370.])
+tensor([ 83.3401, 264.4619, 181.6265, 342.1065, 136.5306]) tensor([433., 415., 587., 589., 476.])
+Epoch 86: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.143, v_num=32, val_miou_old/dataloader_idx_0=0.476, val_loss/dataloader_idx_0=0.2Epoch 86, step 31406: val_miou_0 was not in top 2                                                                                            
+Epoch 86, step 31406: val_miou_1 was not in top 2
+Epoch 86, step 31406: val_miou_2 was not in top 2
+Epoch 86, step 31406: val_miou_3 was not in top 2
+Epoch 87: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.157, v_num=32, val_miou_old/dataloader_idx_0=0.476, val_loss/dataloader_idx_0=0.2tensor([416.3314, 101.3711, 415.7616, 219.0293, 189.0672]) tensor([564., 433., 627., 394., 482.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([217.4126, 246.2662, 419.8406,  88.2640, 247.7709]) tensor([316., 536., 678., 602., 368.])
+tensor([ 40.7990, 318.1335, 190.5230, 135.5522, 590.8736]) tensor([ 210.,  467.,  272.,  230., 1321.])
+tensor([ 83.9757, 240.5086, 185.9313, 329.7473, 143.5107]) tensor([484., 366., 581., 599., 470.])
+Epoch 87: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.157, v_num=32, val_miou_old/dataloader_idx_0=0.508, val_loss/dataloader_idx_0=0.2Epoch 87, step 31767: val_miou_0 was not in top 2                                                                                            
+Epoch 87, step 31767: val_miou_1 was not in top 2
+Epoch 87, step 31767: val_miou_2 was not in top 2
+Epoch 87, step 31767: val_miou_3 was not in top 2
+Epoch 88: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.144, v_num=32, val_miou_old/dataloader_idx_0=0.508, val_loss/dataloader_idx_0=0.2tensor([434.7436,  92.4193, 425.0419, 220.5986, 175.3597]) tensor([576., 448., 629., 378., 469.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([243.0540, 264.9214, 392.1888,  89.9213, 255.2139]) tensor([339., 552., 594., 647., 368.])
+tensor([ 36.9902, 312.8506, 162.2857, 110.4214, 615.7255]) tensor([ 206.,  453.,  233.,  194., 1414.])
+tensor([ 90.0414, 251.9929, 165.8731, 359.7158, 156.6961]) tensor([430., 389., 573., 635., 473.])
+Epoch 88: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.144, v_num=32, val_miou_old/dataloader_idx_0=0.507, val_loss/dataloader_idx_0=0.2Epoch 88, step 32128: val_miou_0 was not in top 2                                                                                            
+Epoch 88, step 32128: val_miou_1 was not in top 2
+Epoch 88, step 32128: val_miou_2 was not in top 2
+Epoch 88, step 32128: val_miou_3 was not in top 2
+Epoch 89: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.148, v_num=32, val_miou_old/dataloader_idx_0=0.507, val_loss/dataloader_idx_0=0.2tensor([399.4414, 103.5699, 442.3667, 259.6068, 195.3422]) tensor([525., 410., 656., 428., 481.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([250.1550, 251.7665, 407.5251,  71.1222, 249.4508]) tensor([333., 570., 671., 575., 351.])
+tensor([ 36.9848, 330.9033, 182.3158, 127.2953, 609.2026]) tensor([ 222.,  473.,  260.,  198., 1347.])
+tensor([ 75.8476, 270.0101, 181.0404, 403.4426, 144.7253]) tensor([440., 414., 562., 620., 464.])
+Epoch 89: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.148, v_num=32, val_miou_old/dataloader_idx_0=0.533, val_loss/dataloader_idx_0=0.2Epoch 89, step 32489: val_miou_0 was not in top 2                                                                                            
+Epoch 89, step 32489: val_miou_1 was not in top 2
+Epoch 89, step 32489: val_miou_2 was not in top 2
+Epoch 89, step 32489: val_miou_3 was not in top 2
+Epoch 90: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.149, v_num=32, val_miou_old/dataloader_idx_0=0.533, val_loss/dataloader_idx_0=0.2tensor([468.4832, 104.1999, 377.6818, 221.7328, 180.7110]) tensor([609., 416., 598., 406., 471.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([263.2505, 266.8017, 396.2001,  84.9310, 255.3876]) tensor([370., 543., 631., 562., 394.])
+tensor([ 48.8821, 315.0737, 164.2818, 140.0584, 580.7552]) tensor([ 250.,  463.,  245.,  229., 1313.])
+tensor([ 89.4579, 234.4413, 163.2452, 363.6208, 149.4415]) tensor([480., 383., 539., 638., 460.])
+Epoch 90: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.149, v_num=32, val_miou_old/dataloader_idx_0=0.504, val_loss/dataloader_idx_0=0.2Epoch 90, step 32850: val_miou_0 was not in top 2                                                                                            
+Epoch 90, step 32850: val_miou_1 was not in top 2
+Epoch 90, step 32850: val_miou_2 was not in top 2
+Epoch 90, step 32850: val_miou_3 was not in top 2
+Epoch 91: 100%|▉| 676/677 [15:33<00:01,  1.38s/it, loss=0.154, v_num=32, val_miou_old/dataloader_idx_0=0.504, val_loss/dataloader_idx_0=0.2tensor([397.9849,  94.4331, 424.5752, 247.4692, 190.4280]) tensor([538., 415., 620., 422., 505.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([245.5425, 236.4909, 408.7450,  86.4542, 261.3162]) tensor([344., 529., 644., 595., 388.])
+tensor([ 49.6873, 324.0255, 161.5908, 144.6995, 603.2376]) tensor([ 225.,  465.,  236.,  219., 1355.])
+tensor([ 77.7459, 268.6398, 183.6264, 337.7838, 163.7469]) tensor([413., 395., 607., 590., 495.])
+Epoch 91: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.154, v_num=32, val_miou_old/dataloader_idx_0=0.514, val_loss/dataloader_idx_0=0.2Epoch 91, step 33211: val_miou_0 was not in top 2                                                                                            
+Epoch 91, step 33211: val_miou_1 was not in top 2
+Epoch 91, step 33211: val_miou_2 was not in top 2
+Epoch 91, step 33211: val_miou_3 was not in top 2
+Epoch 92: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.145, v_num=32, val_miou_old/dataloader_idx_0=0.514, val_loss/dataloader_idx_0=0.2tensor([422.8145, 110.2974, 450.2658, 246.6140, 192.2296]) tensor([555., 416., 643., 387., 499.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([227.0300, 261.7769, 420.4985,  92.1233, 288.8304]) tensor([308., 542., 648., 609., 393.])
+tensor([ 49.7130, 340.1057, 179.9161, 159.6208, 633.6934]) tensor([ 215.,  477.,  248.,  248., 1312.])
+tensor([112.9496, 303.0361, 173.4783, 383.2871, 166.2782]) tensor([467., 423., 537., 587., 486.])
+Epoch 92: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.145, v_num=32, val_miou_old/dataloader_idx_0=0.516, val_loss/dataloader_idx_0=0.2Epoch 92, global step 33572: val_miou_0 reached 0.54994 (best 0.55505), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=92-step=33572.ckpt" as top 2
+Epoch 92, step 33572: val_miou_1 was not in top 2
+Epoch 92, global step 33572: val_miou_2 reached 0.55967 (best 0.55967), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=92-step=33572.ckpt" as top 2
+Epoch 92, global step 33572: val_miou_3 reached 0.46578 (best 0.46578), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=92-step=33572.ckpt" as top 2
+Epoch 93: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.136, v_num=32, val_miou_old/dataloader_idx_0=0.516, val_loss/dataloader_idx_0=0.2tensor([428.5129, 111.1161, 443.8991, 255.3695, 212.9460]) tensor([538., 426., 638., 391., 507.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([249.2709, 251.1251, 371.3135,  94.8832, 281.3594]) tensor([343., 562., 606., 591., 398.])
+tensor([ 47.9860, 320.5791, 170.0173, 133.2574, 609.3702]) tensor([ 214.,  462.,  231.,  210., 1383.])
+tensor([ 87.9106, 280.1015, 200.5593, 399.2635, 150.0671]) tensor([430., 392., 587., 624., 467.])
+Epoch 93: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.136, v_num=32, val_miou_old/dataloader_idx_0=0.528, val_loss/dataloader_idx_0=0.2Epoch 93, global step 33933: val_miou_0 reached 0.56525 (best 0.56525), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=93-step=33933.ckpt" as top 2
+Epoch 93, step 33933: val_miou_1 was not in top 2
+Epoch 93, step 33933: val_miou_2 was not in top 2
+Epoch 93, step 33933: val_miou_3 was not in top 2
+Epoch 94: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.157, v_num=32, val_miou_old/dataloader_idx_0=0.528, val_loss/dataloader_idx_0=0.2tensor([400.0870,  78.6187, 450.1100, 237.1849, 163.6109]) tensor([534., 409., 661., 435., 461.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([231.2607, 236.7106, 378.7757,  80.2108, 263.7827]) tensor([342., 542., 640., 589., 387.])
+tensor([ 47.4789, 330.5176, 159.4293, 144.8150, 598.2130]) tensor([ 229.,  484.,  230.,  241., 1316.])
+tensor([ 93.1895, 260.1900, 154.0685, 342.8089, 145.0080]) tensor([464., 388., 554., 615., 479.])
+Epoch 94: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.157, v_num=32, val_miou_old/dataloader_idx_0=0.503, val_loss/dataloader_idx_0=0.2Epoch 94, step 34294: val_miou_0 was not in top 2                                                                                            
+Epoch 94, step 34294: val_miou_1 was not in top 2
+Epoch 94, step 34294: val_miou_2 was not in top 2
+Epoch 94, step 34294: val_miou_3 was not in top 2
+Epoch 95: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.146, v_num=32, val_miou_old/dataloader_idx_0=0.503, val_loss/dataloader_idx_0=0.2tensor([409.1552,  93.1765, 386.0351, 220.4937, 181.3389]) tensor([585., 409., 625., 412., 469.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([254.7639, 248.8103, 409.5143,  95.4048, 261.1122]) tensor([351., 547., 641., 579., 382.])
+tensor([ 60.0795, 326.9160, 173.3698, 147.2633, 583.1463]) tensor([ 254.,  490.,  262.,  222., 1272.])
+tensor([115.1113, 267.6116, 190.8473, 389.6721, 129.3685]) tensor([476., 405., 554., 633., 432.])
+Epoch 95: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.146, v_num=32, val_miou_old/dataloader_idx_0=0.491, val_loss/dataloader_idx_0=0.2Epoch 95, step 34655: val_miou_0 was not in top 2                                                                                            
+Epoch 95, step 34655: val_miou_1 was not in top 2
+Epoch 95, step 34655: val_miou_2 was not in top 2
+Epoch 95, step 34655: val_miou_3 was not in top 2
+Epoch 96: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.147, v_num=32, val_miou_old/dataloader_idx_0=0.491, val_loss/dataloader_idx_0=0.2tensor([386.9365,  97.4235, 358.1334, 211.1368, 186.3259]) tensor([563., 466., 610., 375., 486.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([250.8465, 244.4635, 425.2441,  83.4017, 248.0707]) tensor([333., 555., 670., 579., 363.])
+tensor([ 47.5629, 301.3451, 157.8886, 120.9718, 615.5977]) tensor([ 234.,  456.,  240.,  211., 1359.])
+tensor([101.4224, 267.3049, 156.1033, 372.9586, 147.4377]) tensor([476., 401., 497., 637., 489.])
+Epoch 96: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.147, v_num=32, val_miou_old/dataloader_idx_0=0.483, val_loss/dataloader_idx_0=0.2Epoch 96, step 35016: val_miou_0 was not in top 2                                                                                            
+Epoch 96, step 35016: val_miou_1 was not in top 2
+Epoch 96, step 35016: val_miou_2 was not in top 2
+Epoch 96, step 35016: val_miou_3 was not in top 2
+Epoch 97: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.135, v_num=32, val_miou_old/dataloader_idx_0=0.483, val_loss/dataloader_idx_0=0.2tensor([417.5917,  91.3593, 410.8679, 270.6915, 191.1303]) tensor([544., 411., 634., 433., 478.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([269.4069, 264.6551, 376.1674,  91.6074, 250.2244]) tensor([363., 560., 593., 621., 363.])
+tensor([ 42.9478, 315.6656, 179.3579, 123.1179, 640.3731]) tensor([ 226.,  463.,  243.,  191., 1377.])
+tensor([ 98.2262, 290.8177, 150.1531, 355.9693, 147.9500]) tensor([492., 396., 558., 609., 445.])
+Epoch 97: 100%|█| 677/677 [15:35<00:00,  1.38s/it, loss=0.135, v_num=32, val_miou_old/dataloader_idx_0=0.510, val_loss/dataloader_idx_0=0.2Epoch 97, step 35377: val_miou_0 was not in top 2                                                                                            
+Epoch 97, step 35377: val_miou_1 was not in top 2
+Epoch 97, step 35377: val_miou_2 was not in top 2
+Epoch 97, step 35377: val_miou_3 was not in top 2
+Epoch 98: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.156, v_num=32, val_miou_old/dataloader_idx_0=0.510, val_loss/dataloader_idx_0=0.2tensor([433.9307,  93.0455, 414.9477, 245.3581, 184.3638]) tensor([573., 445., 615., 407., 460.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([243.6297, 258.6377, 390.9461,  89.9012, 295.7759]) tensor([319., 572., 648., 553., 408.])
+tensor([ 38.3578, 326.3393, 177.8194, 128.3169, 625.1854]) tensor([ 214.,  473.,  250.,  203., 1360.])
+tensor([102.2966, 293.7560, 162.9789, 392.2015, 138.6685]) tensor([469., 425., 513., 618., 475.])
+Epoch 98: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.156, v_num=32, val_miou_old/dataloader_idx_0=0.511, val_loss/dataloader_idx_0=0.2Epoch 98, step 35738: val_miou_0 was not in top 2                                                                                            
+Epoch 98, step 35738: val_miou_1 was not in top 2
+Epoch 98, step 35738: val_miou_2 was not in top 2
+Epoch 98, step 35738: val_miou_3 was not in top 2
+Epoch 99: 100%|▉| 676/677 [15:32<00:01,  1.38s/it, loss=0.143, v_num=32, val_miou_old/dataloader_idx_0=0.511, val_loss/dataloader_idx_0=0.2tensor([418.3023,  91.2984, 428.5022, 283.3880, 197.1136]) tensor([550., 376., 622., 466., 486.])██████████| 316/316 [09:27<00:00,  1.34s/it]
+tensor([268.3412, 252.7212, 398.6840,  81.3043, 259.4284]) tensor([365., 539., 616., 600., 380.])
+tensor([ 41.9407, 363.2699, 173.2453, 132.7218, 599.5856]) tensor([ 197.,  504.,  243.,  212., 1344.])
+tensor([114.2048, 280.3961, 149.9097, 402.1444, 162.8498]) tensor([494., 393., 536., 604., 473.])
+Epoch 99: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.143, v_num=32, val_miou_old/dataloader_idx_0=0.517, val_loss/dataloader_idx_0=0.3Epoch 99, step 36099: val_miou_0 was not in top 2                                                                                            
+Epoch 99, step 36099: val_miou_1 was not in top 2
+Epoch 99, step 36099: val_miou_2 was not in top 2
+Epoch 99, step 36099: val_miou_3 was not in top 2
+Epoch 99: 100%|█| 677/677 [15:34<00:00,  1.38s/it, loss=0.143, v_num=32, val_miou_old/dataloader_idx_0=0.517, val_loss/dataloader_idx_0=0.31
+
+
+Profiler Report
+
+Action                             	|  Mean duration (s)	|Num calls      	|  Total time (s) 	|  Percentage %   	|
+------------------------------------------------------------------------------------------------------------------------------------
+Total                              	|  -              	|_              	|  9.3627e+04     	|  100 %          	|
+------------------------------------------------------------------------------------------------------------------------------------
+run_training_epoch                 	|  935.94         	|100            	|  9.3594e+04     	|  99.964         	|
+evaluation_step_and_end            	|  1.7795         	|31608          	|  5.6248e+04     	|  60.076         	|
+validation_step                    	|  1.7794         	|31608          	|  5.6242e+04     	|  60.071         	|
+run_training_batch                 	|  1.0125         	|36100          	|  3.6553e+04     	|  39.041         	|
+optimizer_step_and_closure_0       	|  0.98197        	|36100          	|  3.5449e+04     	|  37.862         	|
+training_step_and_backward         	|  0.97881        	|36100          	|  3.5335e+04     	|  37.74          	|
+model_forward                      	|  0.96861        	|36100          	|  3.4967e+04     	|  37.347         	|
+training_step                      	|  0.96837        	|36100          	|  3.4958e+04     	|  37.337         	|
+model_backward                     	|  0.0092074      	|36100          	|  332.39         	|  0.35501        	|
+get_train_batch                    	|  0.003131       	|36100          	|  113.03         	|  0.12072        	|
+on_validation_end                  	|  0.69745        	|101            	|  70.443         	|  0.075238       	|
+on_train_batch_end                 	|  0.00057472     	|36100          	|  20.747         	|  0.022159       	|
+on_validation_batch_end            	|  0.00041102     	|31608          	|  12.992         	|  0.013876       	|
+cache_result                       	|  2.0211e-05     	|276434         	|  5.5869         	|  0.0059672      	|
+on_before_zero_grad                	|  2.1908e-05     	|36100          	|  0.79089        	|  0.00084472     	|
+on_batch_start                     	|  1.9679e-05     	|36100          	|  0.7104         	|  0.00075875     	|
+on_after_backward                  	|  1.6745e-05     	|36100          	|  0.6045         	|  0.00064564     	|
+on_train_end                       	|  0.54337        	|1              	|  0.54337        	|  0.00058036     	|
+on_validation_batch_start          	|  1.65e-05       	|31608          	|  0.52153        	|  0.00055702     	|
+on_batch_end                       	|  1.2886e-05     	|36100          	|  0.46518        	|  0.00049685     	|
+on_train_batch_start               	|  1.1003e-05     	|36100          	|  0.39721        	|  0.00042424     	|
+training_step_end                  	|  9.0651e-06     	|36100          	|  0.32725        	|  0.00034952     	|
+validation_step_end                	|  8.6775e-06     	|31608          	|  0.27428        	|  0.00029295     	|
+on_validation_epoch_end            	|  0.002318       	|101            	|  0.23412        	|  0.00025006     	|
+on_validation_start                	|  0.0005763      	|101            	|  0.058207       	|  6.2168e-05     	|
+on_train_epoch_start               	|  0.00052118     	|100            	|  0.052118       	|  5.5665e-05     	|
+on_train_start                     	|  0.014785       	|1              	|  0.014785       	|  1.5791e-05     	|
+on_epoch_end                       	|  1.6148e-05     	|201            	|  0.0032458      	|  3.4668e-06     	|
+on_epoch_start                     	|  1.3966e-05     	|201            	|  0.0028071      	|  2.9982e-06     	|
+on_train_epoch_end                 	|  1.8213e-05     	|100            	|  0.0018213      	|  1.9452e-06     	|
+on_validation_epoch_start          	|  1.1229e-05     	|101            	|  0.0011342      	|  1.2114e-06     	|
+on_fit_start                       	|  2.7897e-05     	|1              	|  2.7897e-05     	|  2.9796e-08     	|
+on_before_accelerator_backend_setup	|  9.0799e-06     	|1              	|  9.0799e-06     	|  9.6979e-09     	|
+
