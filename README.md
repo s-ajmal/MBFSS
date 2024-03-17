@@ -1,5 +1,5 @@
-# Advancements-in-Few-Shot-Semantic-Segmentation-through-Self-Supervised-Training-and-Feature-Fusion
-Repo for our research experimentations of "Advancements in Few-Shot Semantic Segmentation through Self-Supervised Training and Feature Fusion"
+# Self-Supervised Image Segmentation using Meta-Learning and Multi Backbone Feature Fusion
+Repo for our research experimentations of "Self-Supervised Image Segmentation using Meta-Learning and Multi Backbone Feature Fusion"
 
 
 ------------------------------------------Under Construction-------------------------------------
