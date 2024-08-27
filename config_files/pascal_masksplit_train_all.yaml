@@ -8,7 +8,7 @@ DATA:
   train_name: pascal
   test_name: default
   test_split: default
-  train_list: lists/pascal/train_masksplit.txt
+  train_list: lists/pascal/train_mbfss.txt
   data_root:  'data/pascal/' # add path to data that contains JPEGImages, SegmentationClassAug, saliency_unsupervised_model e.g. {some_path}/data/pascal
   val_list: lists/pascal/val.txt
   workers: 4
@@ -31,13 +31,13 @@ TRAIN:
 EVALUATION:
   shot: 1
   visualize: False
-  ckpt_used: "checkpoints/Masksplit_2/epoch=6-step=2526.ckpt"
+  ckpt_used: "checkpoints/MBFSS_2/epoch=6-step=2526.ckpt"
 
 MODEL:
   arch: PVT v2, ResNeXt and Resnet
   layers: 101
   pretrained: True  # Means the backbone has been pre-trained
-  model_name: Masksplit++
+  model_name: MBFSS
 
 DISTRIBUTED:
   gpus: -1
