@@ -8,7 +8,7 @@ DATA:
   train_name: coco
   test_name: default
   test_split: default
-  train_list: lists/coco/train_masksplit.txt
+  train_list: lists/coco/train_mbfss.txt
   data_root:  'data/coco/' # add path to data that contains JPEGImages, SegmentationClassAug, saliency_unsupervised_model e.g. {some_path}/data/pascal
   val_list: lists/coco/val.txt
   workers: 4
@@ -37,7 +37,7 @@ MODEL:
   arch: PVT v2, ResNeXt and Resnet
   layers: 101
   pretrained: True  # Means the backbone has been pre-trained
-  model_name: Masksplit++
+  model_name: MBFSS
 
 DISTRIBUTED:
   gpus: -1
