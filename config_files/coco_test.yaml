@@ -12,7 +12,7 @@ DATA:
 EVALUATION:
   shot: 1
   visualize: False
-  ckpt_used: 'checkpoints/Masksplit++_3/epoch=28-step=148769.ckpt'
+  ckpt_used: 'checkpoints/MBFSS_3/epoch=28-step=148769.ckpt'
 
 DISTRIBUTED:
   gpus: -1
