@@ -1,4 +1,4 @@
-(stable) iedA@qin-X299-UD4-Pro:~/Shahroz/MaskSplit/MASK$ python src/train.py --config config_files/coco_train.yaml
+(stable) iedA@qin-X299-UD4-Pro:~/Shahroz/MBFSS/MASK$ python src/train.py --config config_files/coco_train.yaml
 
 alternate: True
 arch: PVT v2, ResNeXt and Resnet
@@ -12,7 +12,7 @@ hsplit: True
 hsplit_prob: 1.0
 image_size: 400
 layers: 101
-model_name: Masksplit++
+model_name: MBFSS
 num_classes_val: 5
 pretrained: True
 query_aug: True
@@ -21,7 +21,7 @@ strategy: unsupervised_all
 sup_aug: True
 test_name: default
 test_split: default
-train_list: lists/coco/train_masksplit.txt
+train_list: lists/coco/train_mbfss.txt
 train_name: coco
 train_split: False
 use_all_classes: True
@@ -107,33 +107,33 @@ Epoch 0: 100%|¦| 5446/5446 [1:36:32<00:00,  1.06s/it, loss=0.211, v_num=46, val
 tensor([133.0191, 157.0286,  50.5977,  97.1135, 154.1883]) tensor([544., 609., 293., 524., 530.])
 tensor([157.1503, 132.2300,  54.3109, 118.3311,  63.2150]) tensor([864., 575., 265., 392., 404.])
 tensor([184.7829, 115.5968,  87.2822, 179.8471, 109.7785]) tensor([606., 450., 373., 526., 545.])
-Epoch 0: 100%|¦| 5446/5446 [1:36:32<00:00,  1.06s/it, loss=0.211, v_num=46, val_miou_old/dataloader_idx_0=0.337, val_loss/dataloader_idx_0=Epoch 0, global step 5129: val_miou_0 reached 0.24785 (best 0.24785), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=0-step=5129.ckpt" as top 2
-Epoch 0, global step 5129: val_miou_1 reached 0.23026 (best 0.23026), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_1/epoch=0-step=5129.ckpt" as top 2
-Epoch 0, global step 5129: val_miou_2 reached 0.21503 (best 0.21503), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=0-step=5129.ckpt" as top 2
-Epoch 0, global step 5129: val_miou_3 reached 0.26783 (best 0.26783), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=0-step=5129.ckpt" as top 2
+Epoch 0: 100%|¦| 5446/5446 [1:36:32<00:00,  1.06s/it, loss=0.211, v_num=46, val_miou_old/dataloader_idx_0=0.337, val_loss/dataloader_idx_0=Epoch 0, global step 5129: val_miou_0 reached 0.24785 (best 0.24785), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_0/epoch=0-step=5129.ckpt" as top 2
+Epoch 0, global step 5129: val_miou_1 reached 0.23026 (best 0.23026), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_1/epoch=0-step=5129.ckpt" as top 2
+Epoch 0, global step 5129: val_miou_2 reached 0.21503 (best 0.21503), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_2/epoch=0-step=5129.ckpt" as top 2
+Epoch 0, global step 5129: val_miou_3 reached 0.26783 (best 0.26783), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_3/epoch=0-step=5129.ckpt" as top 2
 Epoch 1: 100%|¦| 5446/5446 [1:36:06<00:00,  1.06s/it, loss=0.2, v_num=46, val_miou_old/dataloader_idx_0=0.337, val_loss/dataloader_idx_0=0.tensor([577.8092,  33.9754,  42.1465,  17.7565,  56.2174]) tensor([1653.,  191.,  157.,  134.,  365.])¦¦¦¦¦| 316/316 [09:35<00:00,  1.33s/it]
 tensor([131.2719, 147.4934,  55.5668, 108.0509, 145.4803]) tensor([596., 575., 307., 525., 497.])
 tensor([135.5658, 112.8295,  50.5245, 119.2151,  63.7499]) tensor([867., 555., 253., 418., 407.])
 tensor([180.2719,  96.7037,  83.7261, 164.0546, 106.4180]) tensor([621., 475., 340., 501., 563.])
-Epoch 1: 100%|¦| 5446/5446 [1:36:06<00:00,  1.06s/it, loss=0.2, v_num=46, val_miou_old/dataloader_idx_0=0.307, val_loss/dataloader_idx_0=0.Epoch 1, global step 10259: val_miou_0 reached 0.21648 (best 0.24785), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=1-step=10259.ckpt" as top 2
-Epoch 1, global step 10259: val_miou_1 reached 0.23126 (best 0.23126), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_1/epoch=1-step=10259.ckpt" as top 2
-Epoch 1, global step 10259: val_miou_2 reached 0.20024 (best 0.21503), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=1-step=10259.ckpt" as top 2
-Epoch 1, global step 10259: val_miou_3 reached 0.25132 (best 0.26783), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=1-step=10259.ckpt" as top 2
+Epoch 1: 100%|¦| 5446/5446 [1:36:06<00:00,  1.06s/it, loss=0.2, v_num=46, val_miou_old/dataloader_idx_0=0.307, val_loss/dataloader_idx_0=0.Epoch 1, global step 10259: val_miou_0 reached 0.21648 (best 0.24785), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_0/epoch=1-step=10259.ckpt" as top 2
+Epoch 1, global step 10259: val_miou_1 reached 0.23126 (best 0.23126), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_1/epoch=1-step=10259.ckpt" as top 2
+Epoch 1, global step 10259: val_miou_2 reached 0.20024 (best 0.21503), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_2/epoch=1-step=10259.ckpt" as top 2
+Epoch 1, global step 10259: val_miou_3 reached 0.25132 (best 0.26783), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_3/epoch=1-step=10259.ckpt" as top 2
 Epoch 2: 100%|¦| 5446/5446 [1:36:01<00:00,  1.06s/it, loss=0.194, v_num=46, val_miou_old/dataloader_idx_0=0.307, val_loss/dataloader_idx_0=tensor([589.6071,  36.2767,  46.4832,  25.6996,  50.0767]) tensor([1638.,  195.,  160.,  141.,  366.])¦¦¦¦¦| 316/316 [09:30<00:00,  1.33s/it]
 tensor([119.3452, 167.5482,  53.2585, 102.7716, 153.6460]) tensor([542., 582., 317., 543., 516.])
 tensor([163.0164, 151.5738,  42.2992, 120.8530,  69.6940]) tensor([845., 578., 237., 415., 425.])
 tensor([210.3966, 110.6280,  75.9780, 169.2662, 114.7408]) tensor([614., 456., 342., 502., 586.])
-Epoch 2: 100%|¦| 5446/5446 [1:36:02<00:00,  1.06s/it, loss=0.194, v_num=46, val_miou_old/dataloader_idx_0=0.316, val_loss/dataloader_idx_0=Epoch 2, global step 15389: val_miou_0 reached 0.23112 (best 0.24785), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=2-step=15389.ckpt" as top 2
-Epoch 2, global step 15389: val_miou_1 reached 0.23262 (best 0.23262), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_1/epoch=2-step=15389.ckpt" as top 2
-Epoch 2, global step 15389: val_miou_2 reached 0.21777 (best 0.21777), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=2-step=15389.ckpt" as top 2
-Epoch 2, global step 15389: val_miou_3 reached 0.26808 (best 0.26808), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=2-step=15389.ckpt" as top 2
+Epoch 2: 100%|¦| 5446/5446 [1:36:02<00:00,  1.06s/it, loss=0.194, v_num=46, val_miou_old/dataloader_idx_0=0.316, val_loss/dataloader_idx_0=Epoch 2, global step 15389: val_miou_0 reached 0.23112 (best 0.24785), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_0/epoch=2-step=15389.ckpt" as top 2
+Epoch 2, global step 15389: val_miou_1 reached 0.23262 (best 0.23262), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_1/epoch=2-step=15389.ckpt" as top 2
+Epoch 2, global step 15389: val_miou_2 reached 0.21777 (best 0.21777), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_2/epoch=2-step=15389.ckpt" as top 2
+Epoch 2, global step 15389: val_miou_3 reached 0.26808 (best 0.26808), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_3/epoch=2-step=15389.ckpt" as top 2
 Epoch 3: 100%|¦| 5446/5446 [1:35:59<00:00,  1.06s/it, loss=0.181, v_num=46, val_miou_old/dataloader_idx_0=0.316, val_loss/dataloader_idx_0=tensor([604.2744,  35.2104,  40.1549,  26.8201,  60.6428]) tensor([1668.,  178.,  150.,  141.,  363.])¦¦¦¦¦| 316/316 [09:28<00:00,  1.34s/it]
 tensor([108.4493, 171.2325,  50.8121, 116.3459, 154.6721]) tensor([533., 613., 318., 518., 518.])
 tensor([162.1841, 148.5419,  44.7327, 121.6215,  63.0716]) tensor([884., 583., 229., 405., 399.])
 tensor([189.6018, 111.0237,  68.7756, 152.0374, 112.9729]) tensor([602., 502., 325., 486., 585.])
-Epoch 3: 100%|¦| 5446/5446 [1:36:00<00:00,  1.06s/it, loss=0.181, v_num=46, val_miou_old/dataloader_idx_0=0.328, val_loss/dataloader_idx_0=Epoch 3, global step 20519: val_miou_0 reached 0.23701 (best 0.24785), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=3-step=20519.ckpt" as top 2
-Epoch 3, global step 20519: val_miou_1 reached 0.23316 (best 0.23316), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_1/epoch=3-step=20519.ckpt" as top 2
-Epoch 3, global step 20519: val_miou_2 reached 0.21839 (best 0.21839), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=3-step=20519.ckpt" as top 2
+Epoch 3: 100%|¦| 5446/5446 [1:36:00<00:00,  1.06s/it, loss=0.181, v_num=46, val_miou_old/dataloader_idx_0=0.328, val_loss/dataloader_idx_0=Epoch 3, global step 20519: val_miou_0 reached 0.23701 (best 0.24785), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_0/epoch=3-step=20519.ckpt" as top 2
+Epoch 3, global step 20519: val_miou_1 reached 0.23316 (best 0.23316), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_1/epoch=3-step=20519.ckpt" as top 2
+Epoch 3, global step 20519: val_miou_2 reached 0.21839 (best 0.21839), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_2/epoch=3-step=20519.ckpt" as top 2
 Epoch 3, step 20519: val_miou_3 was not in top 2
 Epoch 4: 100%|¦| 5446/5446 [1:35:59<00:00,  1.06s/it, loss=0.194, v_num=46, val_miou_old/dataloader_idx_0=0.328, val_loss/dataloader_idx_0=tensor([539.4290,  37.7195,  40.8489,  13.6649,  43.9019]) tensor([1671.,  198.,  140.,  131.,  360.])¦¦¦¦¦| 316/316 [09:28<00:00,  1.33s/it]
 tensor([109.9454, 151.2395,  48.1059,  94.7800, 149.8325]) tensor([563., 574., 332., 519., 512.])
@@ -180,7 +180,7 @@ tensor([104.1181, 157.3706,  63.5174, 118.7011, 151.8527]) tensor([500., 571., 3
 tensor([144.8705, 145.0589,  45.0195, 111.0214,  58.0588]) tensor([862., 593., 246., 419., 380.])
 tensor([195.1683,  88.7134,  77.0361, 141.3540, 106.4701]) tensor([642., 431., 372., 483., 572.])
 Epoch 9: 100%|¦| 5446/5446 [1:35:56<00:00,  1.06s/it, loss=0.161, v_num=46, val_miou_old/dataloader_idx_0=0.325, val_loss/dataloader_idx_0=Epoch 9, step 51299: val_miou_0 was not in top 2                                                                                             
-Epoch 9, global step 51299: val_miou_1 reached 0.23415 (best 0.23415), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_1/epoch=9-step=51299.ckpt" as top 2
+Epoch 9, global step 51299: val_miou_1 reached 0.23415 (best 0.23415), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_1/epoch=9-step=51299.ckpt" as top 2
 Epoch 9, step 51299: val_miou_2 was not in top 2
 Epoch 9, step 51299: val_miou_3 was not in top 2
 Epoch 10: 100%|¦| 5446/5446 [1:35:56<00:00,  1.06s/it, loss=0.167, v_num=46, val_miou_old/dataloader_idx_0=0.325, val_loss/dataloader_idx_0tensor([536.2032,  29.9313,  44.5909,  16.0442,  47.9402]) tensor([1662.,  194.,  168.,  112.,  364.])¦¦¦¦¦| 316/316 [09:26<00:00,  1.33s/it]
@@ -203,17 +203,17 @@ Epoch 12: 100%|¦| 5446/5446 [1:35:59<00:00,  1.06s/it, loss=0.193, v_num=46, va
 tensor([122.9634, 167.5829,  47.6946, 110.5918, 155.0900]) tensor([571., 623., 281., 528., 497.])
 tensor([132.3175, 142.5984,  49.0457, 118.6657,  67.7787]) tensor([831., 584., 255., 392., 438.])
 tensor([173.7529, 101.7961,  95.5178, 157.8993, 113.5019]) tensor([600., 423., 401., 491., 585.])
-Epoch 12: 100%|¦| 5446/5446 [1:35:59<00:00,  1.06s/it, loss=0.193, v_num=46, val_miou_old/dataloader_idx_0=0.320, val_loss/dataloader_idx_0Epoch 12, global step 66689: val_miou_0 reached 0.23728 (best 0.24785), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=12-step=66689.ckpt" as top 2
-Epoch 12, global step 66689: val_miou_1 reached 0.23512 (best 0.23512), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_1/epoch=12-step=66689.ckpt" as top 2
+Epoch 12: 100%|¦| 5446/5446 [1:35:59<00:00,  1.06s/it, loss=0.193, v_num=46, val_miou_old/dataloader_idx_0=0.320, val_loss/dataloader_idx_0Epoch 12, global step 66689: val_miou_0 reached 0.23728 (best 0.24785), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_0/epoch=12-step=66689.ckpt" as top 2
+Epoch 12, global step 66689: val_miou_1 reached 0.23512 (best 0.23512), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_1/epoch=12-step=66689.ckpt" as top 2
 Epoch 12, step 66689: val_miou_2 was not in top 2
 Epoch 12, step 66689: val_miou_3 was not in top 2
 Epoch 13: 100%|¦| 5446/5446 [1:35:58<00:00,  1.06s/it, loss=0.163, v_num=46, val_miou_old/dataloader_idx_0=0.320, val_loss/dataloader_idx_0tensor([619.6890,  47.9290,  51.3490,  16.7673,  61.6392]) tensor([1630.,  204.,  182.,  113.,  371.])¦¦¦¦¦| 316/316 [09:26<00:00,  1.33s/it]
 tensor([116.4141, 180.1504,  49.3021, 117.2750, 163.3688]) tensor([548., 603., 313., 520., 516.])
 tensor([167.7777, 133.9688,  59.4138, 108.3582,  67.5636]) tensor([865., 539., 245., 398., 453.])
 tensor([184.9333, 116.6811,  84.1696, 155.7451, 131.1039]) tensor([589., 457., 353., 497., 604.])
-Epoch 13: 100%|¦| 5446/5446 [1:35:59<00:00,  1.06s/it, loss=0.163, v_num=46, val_miou_old/dataloader_idx_0=0.333, val_loss/dataloader_idx_0Epoch 13, global step 71819: val_miou_0 reached 0.24236 (best 0.24785), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=13-step=71819.ckpt" as top 2
-Epoch 13, global step 71819: val_miou_1 reached 0.24217 (best 0.24217), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_1/epoch=13-step=71819.ckpt" as top 2
-Epoch 13, global step 71819: val_miou_2 reached 0.22128 (best 0.22128), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=13-step=71819.ckpt" as top 2
+Epoch 13: 100%|¦| 5446/5446 [1:35:59<00:00,  1.06s/it, loss=0.163, v_num=46, val_miou_old/dataloader_idx_0=0.333, val_loss/dataloader_idx_0Epoch 13, global step 71819: val_miou_0 reached 0.24236 (best 0.24785), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_0/epoch=13-step=71819.ckpt" as top 2
+Epoch 13, global step 71819: val_miou_1 reached 0.24217 (best 0.24217), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_1/epoch=13-step=71819.ckpt" as top 2
+Epoch 13, global step 71819: val_miou_2 reached 0.22128 (best 0.22128), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_2/epoch=13-step=71819.ckpt" as top 2
 Epoch 13, step 71819: val_miou_3 was not in top 2
 Epoch 14:  80%|?| 4380/5446 [1:13:53<17:58,  1.01s/it, loss=0.155, v_num=46, val_miou_old/dataloader_idx_0=0.333, val_loss/dataloader_idx_0=
 
@@ -223,7 +223,7 @@ tensor([114.9445, 174.9981,  60.6091, 106.8689, 157.2688]) tensor([548., 618., 2
 tensor([152.6937, 140.6634,  38.1553, 118.1768,  61.8535]) tensor([856., 619., 218., 405., 402.])
 tensor([173.5979, 112.7023,  90.8966, 168.1510, 112.2971]) tensor([570., 472., 376., 501., 581.])
 Epoch 14: 100%|¦| 5446/5446 [1:36:00<00:00,  1.06s/it, loss=0.185, v_num=46, val_miou_old/dataloader_idx_0=0.345, val_loss/dataloader_idx_0Epoch 14, step 76949: val_miou_0 was not in top 2                                                                                            
-Epoch 14, global step 76949: val_miou_1 reached 0.24187 (best 0.24217), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_1/epoch=14-step=76949.ckpt" as top 2
+Epoch 14, global step 76949: val_miou_1 reached 0.24187 (best 0.24217), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_1/epoch=14-step=76949.ckpt" as top 2
 Epoch 14, step 76949: val_miou_2 was not in top 2
 Epoch 14, step 76949: val_miou_3 was not in top 2
 Epoch 15: 100%|¦| 5446/5446 [1:35:58<00:00,  1.06s/it, loss=0.173, v_num=46, val_miou_old/dataloader_idx_0=0.345, val_loss/dataloader_idx_0tensor([638.8382,  41.0228,  43.7262,  13.9425,  56.2770]) tensor([1688.,  191.,  154.,  130.,  337.])¦¦¦¦¦| 316/316 [09:26<00:00,  1.34s/it]
@@ -232,7 +232,7 @@ tensor([172.5489, 123.8713,  50.7822, 132.5649,  67.2530]) tensor([857., 577., 2
 tensor([187.6937, 112.3625,  86.6206, 143.0016, 125.0547]) tensor([618., 487., 359., 474., 562.])
 Epoch 15: 100%|¦| 5446/5446 [1:35:59<00:00,  1.06s/it, loss=0.173, v_num=46, val_miou_old/dataloader_idx_0=0.339, val_loss/dataloader_idx_0Epoch 15, step 82079: val_miou_0 was not in top 2                                                                                            
 Epoch 15, step 82079: val_miou_1 was not in top 2
-Epoch 15, global step 82079: val_miou_2 reached 0.22203 (best 0.22203), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=15-step=82079.ckpt" as top 2
+Epoch 15, global step 82079: val_miou_2 reached 0.22203 (best 0.22203), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_2/epoch=15-step=82079.ckpt" as top 2
 Epoch 15, step 82079: val_miou_3 was not in top 2
 Epoch 16: 100%|¦| 5446/5446 [1:39:04<00:00,  1.09s/it, loss=0.176, v_num=46, val_miou_old/dataloader_idx_0=0.339, val_loss/dataloader_idx_0tensor([567.3456,  32.9338,  41.1873,  20.4717,  57.8216]) tensor([1670.,  203.,  144.,  123.,  360.])¦¦¦¦¦| 316/316 [10:14<00:00,  1.44s/it]
 tensor([112.0161, 153.8666,  54.3295, 106.5514, 131.4113]) tensor([565., 621., 322., 510., 482.])
@@ -273,7 +273,7 @@ tensor([193.0367,  99.7811,  84.7661, 180.4601, 128.5692]) tensor([579., 457., 3
 Epoch 20: 100%|¦| 5446/5446 [1:36:00<00:00,  1.06s/it, loss=0.175, v_num=46, val_miou_old/dataloader_idx_0=0.337, val_loss/dataloader_idx_0Epoch 20, step 107729: val_miou_0 was not in top 2                                                                                           
 Epoch 20, step 107729: val_miou_1 was not in top 2
 Epoch 20, step 107729: val_miou_2 was not in top 2
-Epoch 20, global step 107729: val_miou_3 reached 0.27302 (best 0.27302), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=20-step=107729.ckpt" as top 2
+Epoch 20, global step 107729: val_miou_3 reached 0.27302 (best 0.27302), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_3/epoch=20-step=107729.ckpt" as top 2
 Epoch 21: 100%|¦| 5446/5446 [1:35:59<00:00,  1.06s/it, loss=0.178, v_num=46, val_miou_old/dataloader_idx_0=0.337, val_loss/dataloader_idx_0tensor([619.5085,  35.1999,  36.0386,  18.6173,  59.9625]) tensor([1697.,  165.,  149.,  131.,  358.])¦¦¦¦¦| 316/316 [09:26<00:00,  1.34s/it]
 tensor([120.7551, 158.1171,  55.2689, 101.6937, 145.1148]) tensor([568., 600., 295., 535., 502.])
 tensor([140.3898, 118.9356,  47.8836, 121.9668,  69.0317]) tensor([811., 610., 239., 405., 435.])
@@ -334,10 +334,10 @@ Epoch 28: 100%|¦| 5446/5446 [1:35:59<00:00,  1.06s/it, loss=0.176, v_num=46, va
 tensor([136.6537, 166.9708,  54.7584, 122.8407, 140.8532]) tensor([581., 597., 311., 522., 489.])
 tensor([153.9765, 152.8459,  55.1332, 114.0280,  62.2529]) tensor([883., 590., 226., 401., 400.])
 tensor([192.3891, 106.6730,  91.0272, 171.7187, 140.3284]) tensor([600., 458., 348., 493., 601.])
-Epoch 28: 100%|¦| 5446/5446 [1:35:59<00:00,  1.06s/it, loss=0.176, v_num=46, val_miou_old/dataloader_idx_0=0.336, val_loss/dataloader_idx_0Epoch 28, global step 148769: val_miou_0 reached 0.24302 (best 0.24785), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_0/epoch=28-step=148769.ckpt" as top 2
-Epoch 28, global step 148769: val_miou_1 reached 0.24287 (best 0.24287), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_1/epoch=28-step=148769.ckpt" as top 2
-Epoch 28, global step 148769: val_miou_2 reached 0.22348 (best 0.22348), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=28-step=148769.ckpt" as top 2
-Epoch 28, global step 148769: val_miou_3 reached 0.27939 (best 0.27939), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_3/epoch=28-step=148769.ckpt" as top 2
+Epoch 28: 100%|¦| 5446/5446 [1:35:59<00:00,  1.06s/it, loss=0.176, v_num=46, val_miou_old/dataloader_idx_0=0.336, val_loss/dataloader_idx_0Epoch 28, global step 148769: val_miou_0 reached 0.24302 (best 0.24785), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_0/epoch=28-step=148769.ckpt" as top 2
+Epoch 28, global step 148769: val_miou_1 reached 0.24287 (best 0.24287), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_1/epoch=28-step=148769.ckpt" as top 2
+Epoch 28, global step 148769: val_miou_2 reached 0.22348 (best 0.22348), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_2/epoch=28-step=148769.ckpt" as top 2
+Epoch 28, global step 148769: val_miou_3 reached 0.27939 (best 0.27939), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_3/epoch=28-step=148769.ckpt" as top 2
 Epoch 29: 100%|¦| 5446/5446 [1:36:21<00:00,  1.06s/it, loss=0.163, v_num=46, val_miou_old/dataloader_idx_0=0.336, val_loss/dataloader_idx_0tensor([550.0297,  37.3847,  44.3084,  21.2206,  56.7252]) tensor([1668.,  197.,  162.,  131.,  342.])¦¦¦¦¦| 316/316 [09:27<00:00,  1.33s/it]
 tensor([119.0801, 146.6182,  50.2319, 102.5970, 142.1747]) tensor([571., 577., 295., 558., 499.])
 tensor([136.1312, 125.4124,  65.2699, 102.9950,  57.9315]) tensor([850., 593., 281., 396., 380.])
@@ -423,8 +423,8 @@ tensor([137.8181, 182.6797,  58.0127, 105.7095, 146.6580]) tensor([588., 621., 3
 tensor([156.3719, 145.8139,  52.7825, 137.9535,  59.8411]) tensor([834., 583., 253., 425., 405.])
 tensor([187.7241,  96.0998,  92.7581, 149.0377, 115.8924]) tensor([617., 463., 376., 479., 565.])
 Epoch 39: 100%|¦| 5446/5446 [1:35:59<00:00,  1.06s/it, loss=0.161, v_num=46, val_miou_old/dataloader_idx_0=0.333, val_loss/dataloader_idx_0Epoch 39, step 205199: val_miou_0 was not in top 2                                                                                           
-Epoch 39, global step 205199: val_miou_1 reached 0.25267 (best 0.25267), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_1/epoch=39-step=205199.ckpt" as top 2
-Epoch 39, global step 205199: val_miou_2 reached 0.22372 (best 0.22372), saving model to "/dataA/iedA/Shahroz/MaskSplit/MASK/checkpoints/Masksplit++_2/epoch=39-step=205199.ckpt" as top 2
+Epoch 39, global step 205199: val_miou_1 reached 0.25267 (best 0.25267), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_1/epoch=39-step=205199.ckpt" as top 2
+Epoch 39, global step 205199: val_miou_2 reached 0.22372 (best 0.22372), saving model to "/dataA/iedA/Shahroz/MBFSS/MASK/checkpoints/MBFSS_2/epoch=39-step=205199.ckpt" as top 2
 Epoch 39, step 205199: val_miou_3 was not in top 2
 Epoch 40: 100%|¦| 5446/5446 [1:35:58<00:00,  1.06s/it, loss=0.182, v_num=46, val_miou_old/dataloader_idx_0=0.333, val_loss/dataloader_idx_0tensor([575.5468,  32.9636,  43.7358,  21.7057,  51.3381]) tensor([1638.,  185.,  159.,  142.,  376.])¦¦¦¦¦| 316/316 [09:26<00:00,  1.34s/it]
 tensor([110.0496, 162.2386,  59.8535, 102.6004, 153.1125]) tensor([559., 604., 322., 517., 498.])
