@@ -1,0 +1,43 @@
+DATA:
+  train_split: False
+  sup_aug: True
+  query_aug: True
+  image_size: 400
+  use_all_classes: True
+  use_split_coco: False
+  train_name: pascal
+  test_name: default
+  test_split: default
+  train_list: lists/pascal/train_masksplit.txt
+  data_root:  'data/pascal/' # add path to data that contains JPEGImages, SegmentationClassAug, saliency_unsupervised_model e.g. {some_path}/data/pascal
+  val_list: lists/pascal/val.txt
+  workers: 4
+  vcrop_range: [-40,40]
+  vcrop_ignore_support: True
+  alternate: True
+  vsplit_prob: 1.0
+  hsplit_prob: 1.0
+  hsplit: True
+  vsplit: True
+  num_classes_val: 5
+
+TRAIN:
+  ckpt_path: checkpoints/
+  batch_size: 16
+  epochs: 100
+  strategy: "unsupervised_all"
+
+
+EVALUATION:
+  shot: 1
+  visualize: False
+  ckpt_used: "checkpoints/Masksplit_2/epoch=6-step=2526.ckpt"
+
+MODEL:
+  arch: PVT v2, ResNeXt and Resnet
+  layers: 101
+  pretrained: True  # Means the backbone has been pre-trained
+  model_name: Masksplit++
+
+DISTRIBUTED:
+  gpus: -1
