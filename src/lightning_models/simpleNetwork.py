@@ -155,16 +155,13 @@ class SimpleNetwork(pl.LightningModule):
             nfs = self.ResN_layer1(nfs)
             nfs = self.ResN_layer2(nfs)
             fs_3 = self.ResN_layer3(nfs)
-            fs_4 = self.ResN_layer4(fs_3)
-
-
-            """ to test on resnet and Resnext
+            
             output = self.pvt_backbone(support)  # unsqueeze single image into batch of 1
             for o in output:
                 pass
                 #print(o.shape)
             fs_4 = o
-            """
+            
             # Query Feature Extraction
             rfq = self.Res_layer0(query)
             rfq = self.Res_layer1(rfq)
@@ -174,14 +171,11 @@ class SimpleNetwork(pl.LightningModule):
             nfq = self.ResN_layer1(nfq)
             nfq = self.ResN_layer2(nfq)
             fq_3 = self.ResN_layer3(nfq)
-            fq_4 = self.ResN_layer4(fq_3)
-
-            """"
             output = self.pvt_backbone(query)  # unsqueeze single image into batch of 1
             for o in output:
                 pass
             fq_4 = o
-            """
+            
         fs_2 = self.Res_projection1(fs_2)
         fq_2 = self.Res_projection1(fq_2)
         fs_3 = self.Res_projection2(fs_3)
